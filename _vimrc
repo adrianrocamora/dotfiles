@@ -26,13 +26,21 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'sheerun/vim-wombat-scheme'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vimwiki/vimwiki'
 Plugin 'mattn/calendar-vim'
-"Plugin 'ashisha/image.vim'
+Plugin 'kkoenig/wimproved.vim'
+Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'vim-scripts/a.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
+"Plugin 'scrooloose/syntastic'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -225,3 +233,11 @@ set wrap
 "let g:vimwiki_list = [{'path': 'D:/Dropbox/vimwiki'}]
 "set ma
 "let g:vimwiki_folding='list' " too slow!
+
+:set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
+
+:WSetAlpha(200)
+"let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
