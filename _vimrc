@@ -25,8 +25,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vimwiki/vimwiki'
 Plugin 'mattn/calendar-vim'
@@ -35,12 +35,48 @@ Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/a.vim'
+
+" Windows utils
 Plugin 'MarcWeber/vim-addon-mw-utils'
+
 Plugin 'tomtom/tlib_vim'
+
+" Code snippets
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+" Better folding 
+Plugin 'tmhedberg/SimpylFold'
+
+" 
+Plugin 'vim-scripts/indentpython.vim'
+
+" Code completion
+Bundle 'Valloric/YouCompleteMe'
+
+" Syntax checking / highlighting
+Plugin 'w0rp/ale'
+"Plugin 'vim-syntastic/syntastic'
+
+" Colorschemes
+Plugin 'sheerun/vim-wombat-scheme'			" Both?
+Plugin 'altercation/vim-colors-solarized'	" For GUI
+Plugin 'jnurmine/Zenburn'					" For terminal
+
+" PEP 8 checking (python)
+Plugin 'nvie/vim-flake8'
+
+" Image viewing (requires python)
+Plugin 'ashisha/image.vim'
+
+" Fuzzy search
+Plugin 'kien/ctrlp.vim'
+
+" Status bar
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
 "Plugin 'scrooloose/syntastic'
+"Plugin ''	html emmet spk?
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -101,6 +137,21 @@ syntax on
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+" TODO: Review this guy
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
 set enc=utf-8
 set fileencoding=utf-8
@@ -239,5 +290,50 @@ set wrap
 :set guioptions-=r  "remove right-hand scroll bar
 :set guioptions-=L  "remove left-hand scroll bar
 
-:WSetAlpha(200)
+"WSetAlpha(200)
 "let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" Flag unnecessary whitespace
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+set encoding=utf-8
+
+"python with virtualenv support
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+  print('virtualenv activated')
+EOF
+
+let python_highlight_all=1
+syntax on
+
+
+if has('gui_running')
+  set background=dark
+  colorscheme wombat
+  "colorscheme solarized
+else
+  colorscheme wombat
+  "colorscheme zenburn
+endif
+
+" Solarized toggle
+"call togglebg#map("<F5>")
+
+" Hide .pyc files in nerdtree
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+
+
