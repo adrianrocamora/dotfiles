@@ -26,7 +26,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vimwiki/vimwiki'
 Plugin 'mattn/calendar-vim'
@@ -333,18 +333,7 @@ endif
 "call togglebg#map("<F5>")
 
 " Hide .pyc files in nerdtree
-"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 
-let g:vimwiki_list = [{'path': 'D:/Dropbox/mdwiki/',
-				   \ 'syntax': 'markdown', 'ext': '.md'}]
-
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-    "1 - open files in a new horizontal split
-    "2 - open files in a new vertical split
-    "3 - open files in a new tab
-    "4 - open in previous window
-let g:netrw_winsize = 25
 
