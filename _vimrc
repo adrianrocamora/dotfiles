@@ -62,18 +62,30 @@ Plugin 'w0rp/ale'
 Plugin 'sheerun/vim-wombat-scheme'			" Both?
 Plugin 'altercation/vim-colors-solarized'	" For GUI
 Plugin 'jnurmine/Zenburn'					" For terminal
+Plugin 'flazz/vim-colorschemes'
 
 " PEP 8 checking (python)
 Plugin 'nvie/vim-flake8'
 
 " Image viewing (requires python)
-Plugin 'ashisha/image.vim'
+"Plugin 'ashisha/image.vim'
 
 " Fuzzy search
 Plugin 'kien/ctrlp.vim'
 
 " Status bar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+Plugin 'integralist/vim-mypy'
+
+
+" Clojure
+Plugin 'kien/rainbow_parentheses.vim'
+
+
+" Jupytext plugin to edit ipynb files as python files
+Plugin 'goerz/jupytext.vim'
+
 
 "Plugin 'scrooloose/syntastic'
 "Plugin ''	html emmet spk?
@@ -119,8 +131,7 @@ set fileformats+=dos
 
 
 "":colorscheme elflord
-":colorscheme wombat256mod
-:colorscheme wombat
+":colorscheme wombat
 
 set backupdir=./.backup,.,/tmp
 set directory=.,./.backup,/tmp
@@ -137,16 +148,22 @@ syntax on
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
+" Add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " TODO: Review this guy
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+" Removing to test issue when opening python files
+"au BufNewFile,BufRead *.py
+    "\ set tabstop=4
+    "\ set softtabstop=4
+    "\ set shiftwidth=4
+    "\ set textwidth=79
+    "\ set expandtab
+    "\ set autoindent
+    "\ set fileformat=unix
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
@@ -159,7 +176,7 @@ set fileencodings=ucs-bom,utf8,prcs
 "On Windows
 "set guifont=DejaVu\ Sans\ Mono:h12 " Good
 "set guifont=DejaVu\ Sans\ Mono:h10
-set guifont=DejaVu\ Sans\ Mono:h12 " Good
+"set guifont=DejaVu\ Sans\ Mono:h12 " Good
 "set guifont=LucidaConsole:h9
 "set guifont=Monaco:h14
 "set guifont=Andale\ Mono:h18
@@ -236,7 +253,15 @@ let mapleader = ","
 imap jj <ESC>
 
 " Run python on current file
-" nmap <leader>r :w<CR>:!python - 
+
+" Old
+"nmap <leader>r :w<CR>:!python - 
+
+"autocmd BufRead *.py nmap <leader>r :!python "%"<CR>
+"autocmd FileType html nmap <leader>r :!chrome.exe "%"<CR>
+"autocmd FileType python nmap <leader>r :!python "%"<CR>
+
+"nmap <leader>h :w<CR>:!chrome.exe "%"<CR>
 ":set makeprg=python\ %
 
 " Window splitting
@@ -262,6 +287,7 @@ nnoremap <C-l> <C-w>l
 "autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 "autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 "autocmd BufRead *.py nmap <F5> :!python "%"<CR>
+"map <leader>r :w<CR>:!<CR>:!python "%"<CR>
 
 " Ctrl-l redraws the screen and removes any search highlighting
 nnoremap <silent> <C-l> :nohl<CR><C-l>
@@ -277,7 +303,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 "set autochdir
 
-:colorscheme wombat
+":colorscheme wombat
 
 set wrap
 "let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
@@ -322,11 +348,15 @@ syntax on
 
 if has('gui_running')
   set background=dark
-  colorscheme wombat
+  "colorscheme wombat
   "colorscheme solarized
+  colorscheme molokai_dark
 else
-  colorscheme wombat
+  "colorscheme wombat
   "colorscheme zenburn
+  "colorscheme molokai_dark
+  colorscheme monokai
+  colorscheme monokai-phoenix
 endif
 
 " Solarized toggle
@@ -339,12 +369,92 @@ endif
 let g:vimwiki_list = [{'path': 'D:/Dropbox/mdwiki/',
 				   \ 'syntax': 'markdown', 'ext': '.md'}]
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+  set lines=60 columns=108 linespace=0
+  if has('gui_win32')
+    set guifont=DejaVu_Sans_Mono:h10:cANSI
+  	"colorscheme elflord
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 10
+  endif
+endif
+
+"let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn = 300
+
+nmap <leader>r :w<CR>:!python "%"<CR>
+nmap <leader>h :w<CR>:!chrome.exe "%"<CR>
+map <leader>m :lcd %:p:h<CR>:e .<CR>
+map <leader>c :e D:/code/adrian<CR>
+map <leader>t :WSetAlpha 200<CR>
+map <leader>i :!i_view32.exe %:p:h<CR>
+nmap <silent> <C-CR> t :leftabove 50vs<CR>:e .<CR>:wincmd h<CR>
+
+" netrw magic
+" enable mouse usage. makes it easier to browse multiple tabs
+"set mouse=a
+
+" hide netrw top message
+let g:netrw_banner=0
+
+" tree listing by default
+let g:netrw_liststyle=3
+
+" hide vim swap files
+let g:netrw_list_hide='.*\.swp$'
+
+" open files in left window by default
+let g:netrw_chgwin=0
+"let g:netrw_chgwin=2
+
+let g:netrw_browse_split = 0
+    "0 - open files in the sawme window (default)
     "1 - open files in a new horizontal split
     "2 - open files in a new vertical split
     "3 - open files in a new tab
     "4 - open in previous window
-let g:netrw_winsize = 25
+"let g:netrw_winsize = 25
+"let g:netrw_winsize = 25
 
+" SWITCHING TO control space to support vimwiki
+" remap control-enter to open files in new tab
+
+"" remap shift-enter to fire up the sidebar
+"nnoremap <silent> <S-CR> :leftabove 50vs<CR>:e .<CR>
+"" the same remap as above - may be necessary in some distros
+"nnoremap <silent> <C-M> :leftabove 50vs<CR>:e .<CR>
+"" remap control-enter to open files in new tab
+"nmap <silent> <C-CR> t :leftabove 50vs<CR>:e .<CR>:wincmd h<CR>
+"" the same remap as above - may be necessary in some distros
+"nmap <silent> <NL> t :leftabove 50vs<CR>:e .<CR>:wincmd h<CR>
+
+":cd %:p:h	Change directory of the currently open file
+":lcd %:p:h	Change directory of the currently open file for that file only
+
+
+"au BufRead *.png,*.jpg,*.jpeg :!i_view32.exe expand('%:p')<CR>
+"au BufRead *.png,*.jpg,*.jpeg :!open expand('%:p')<CR>
+
+" Get the full path:
+"au BufRead *.png,*.jpg,*.jpeg :echo expand('%:p')
+
+"au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
+
+"au BufRead *.png,*.jpg,*.jpeg :exe '!open '.expand('<cfile>')<cr>
+
+"function! DisplayImage()
+""vim.command("!i_view32.exe")
+"vim.eval("!i_view32\.exe <CR>")
+
+"vim.command("!i_view32.exe expand('%:p')<CR>")
+"vim.command("let imagefile = expand('%:p')")
+"imagefile = vim.eval("imagefile")
+"!i_view32.exe expand('%:p')<CR>
+"endfunction
+
+" GOOD ENOUGH WITH FULL PATH
+"map <leader>i :!i_view32.exe <cfile><CR>
+
+"map <leader>i :!i_view32.exe %<CR>
