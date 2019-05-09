@@ -6,7 +6,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/calendar-vim'
 Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
-Plug 'skywind3000/asyncrun.vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview'
 
 call plug#end()
 
@@ -19,13 +21,15 @@ filetype plugin on
 
 
 "let g:vimwiki_list = [{'path': '~/doc/wiki/', 'path_html': '~/doc/wiki/html/'}]
-let g:vimwiki_list = [{'path': 'D:/Dropbox/mdwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '/home/adrian/code/adrian/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 "let g:vimwiki_folding='list' " too slow! "still too slow in neovim!!!
 
-colorscheme monokai-phoenix
+"colorscheme Dark2
+colorscheme made_of_code
 
-set shell=powershell
-set shellcmdflag=-command
+
+"set shell=powershell
+"set shellcmdflag=-command
 
 set noswapfile
 
@@ -67,11 +71,20 @@ map <F3> ggVGg?
 let mapleader = ","
 
 " GO TO DIRECTORIES
-map <leader>dc :e D:/code/adrian<CR>
-map <leader>db :e D:/books<CR>
+map <leader>dc :e /home/adrian/code/adrian<CR>
+map <leader>db :e /home/adrian/books<CR>
+
+" RUN PROGRAMS ON FILE
+nmap <leader>r :!python3 % <CR>
+nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to html --execute %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR>
+
+nmap <leader>f :!firefox<CR>
+
+
+
 
 " RUN PROGRAM ON TEXT
-map <leader>i :!i_view32.exe %:p:h<CR>
+"map <leader>i :!i_view32.exe %:p:h<CR>
 
 " RUN PROGRAMS ON FILE
 "nmap <leader>r :w<CR>:py3 "%"<CR>
@@ -80,24 +93,3 @@ map <leader>i :!i_view32.exe %:p:h<CR>
 "nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
 "nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
 
-" Quick run via <F5>
-nnoremap <F5> :call <SID>compile_and_run()<CR>
-
-function! s:compile_and_run()
-	exec 'w'
-	if &filetype == 'c'
-		exec "AsyncRun! gcc % -o %<; time ./%<"
-	elseif &filetype == 'cpp'
-		exec "AsyncRun! g++ -std=c++11 % -o %<; time
-		./%<"
-	elseif &filetype == 'java'
-		exec "AsyncRun! javac %; time java %<"
-	elseif &filetype == 'sh'
-		exec "AsyncRun! time bash
-		%"
-	elseif &filetype ==
-		'python'
-		exec "AsyncRun!
-		time python %"
-	endif
-endfunction
