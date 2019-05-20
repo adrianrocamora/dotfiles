@@ -74,6 +74,7 @@ else
 	map <leader>dc :e /media/datanix/code<CR>
 	map <leader>db :e /media/datanix/books<CR>
 	map <leader>dd :e /media/datanix<CR>
+	map <leader>dr :e /home/rocamora<CR>
 endif
 
 " RUN PROGRAMS ON FILE
@@ -83,7 +84,7 @@ nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter
 nmap <leader>f :!firefox<CR>
 map <leader>l :nohl<CR>
 
-let g:user_emmet_leader_key=','
+"let g:user_emmet_leader_key=','
 
 """ Split Management
 map <leader>n <C-w>=
@@ -118,7 +119,20 @@ map <leader>bt :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew
 map <leader>ba :tabnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR>
 
 endif
+
 "--------------------------------------------------"
+if has('win32')
+else
+map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva01.jpg<CR><CR>
+map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva02.jpg<CR><CR>
+map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva03.jpg<CR><CR>
+map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva04.jpg<CR><CR>
+map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva05.jpg<CR><CR>
+map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva06.jpg<CR><CR>
+map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva07.jpg<CR><CR>
+endif
+"--------------------------------------------------"
+"
 
 " RUN PROGRAM ON TEXT
 "map <leader>i :!i_view32.exe %:p:h<CR>
@@ -130,7 +144,7 @@ endif
 "nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
 "nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
 
-function AdaptColorscheme()
+function! AdaptColorscheme()
     highlight clear CursorLine
     highlight Normal ctermbg=none
     highlight LineNr ctermbg=none
