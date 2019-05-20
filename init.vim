@@ -1,14 +1,16 @@
 call plug#begin('~/.local/share/nvim/plugged')
+
 " Colorschemes
-Plug 'flazz/vim-colorschemes'
 Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/calendar-vim'
-Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
 Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
+Plug 'mattn/emmet-vim'
+Plug 'flazz/vim-colorschemes'
+"Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
 
 call plug#end()
 
@@ -20,20 +22,18 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 filetype plugin on
 
 
-"let g:vimwiki_list = [{'path': '~/doc/wiki/', 'path_html': '~/doc/wiki/html/'}]
-let g:vimwiki_list = [{'path': '/home/adrian/code/adrian/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
-"let g:vimwiki_folding='list' " too slow! "still too slow in neovim!!!
+"colorscheme codedark
+colorscheme triplejelly
+if has('win32')
+	set shell=powershell
+	set shellcmdflag=-command
+else
+	let g:vimwiki_list = [{'path': '/media/datanix/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+endif
 
-"colorscheme Dark2
-colorscheme made_of_code
 
 
-"set shell=powershell
-"set shellcmdflag=-command
-
-set noswapfile
-
-" FIx global paste
+set noswapfile " FIx global paste
 inoremap <silent>  <S-Insert>  <C-R>+
 
 syntax on
@@ -57,31 +57,69 @@ set fileencodings=ucs-bom,utf8,prcs
 set autoindent
 set visualbell
 set nu
-"
+
 " Jupytext comment color change for now
-:hi Comment guifg=#A6C22E
+":hi Comment guifg=#A6C22E
 
 
+"--------------------------------------------------"
 """ KEYBOARD SHORTCUTS """
-"
-" Remove syntax highlighting after search 
-nnoremap <silent> <C-l> :nohl<CR><C-l>
 map <F3> ggVGg?
 
 let mapleader = ","
 
-" GO TO DIRECTORIES
-map <leader>dc :e /home/adrian/code/adrian<CR>
-map <leader>db :e /home/adrian/books<CR>
+if has('win32')
+else
+	" GO TO DIRECTORIES
+	map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
+	map <leader>dc :e /media/datanix/code<CR>
+	map <leader>db :e /media/datanix/books<CR>
+	map <leader>dd :e /media/datanix<CR>
+endif
 
 " RUN PROGRAMS ON FILE
 nmap <leader>r :!python3 % <CR>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to html --execute %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR>
 
 nmap <leader>f :!firefox<CR>
+map <leader>l :nohl<CR>
 
+let g:user_emmet_leader_key=','
 
+""" Split Management
+map <leader>n <C-w>=
+map <leader>m <C-w>_
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+"--------------------------------------------------"
+if has('win32')
+else
+
+""" KANBAN BOARD
+" Close board tab
+map <leader>bc :tabclose<CR>
+
+" Main board: soon, doing, today, done 
+map <leader>bb :tabnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>
+
+" Full board: triage, later, soon, doing, today, done, archive
+map <leader>bf :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR> 
+
+" Triage board: triage, later, soon, doing
+map <leader>bt :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR> 
+
+" Archiving board: done, archive
+map <leader>ba :tabnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR>
+
+endif
+"--------------------------------------------------"
 
 " RUN PROGRAM ON TEXT
 "map <leader>i :!i_view32.exe %:p:h<CR>
@@ -93,3 +131,14 @@ nmap <leader>f :!firefox<CR>
 "nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
 "nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
 
+function! AdaptColorscheme()
+    highlight clear CursorLine
+    highlight Normal ctermbg=none
+    highlight LineNr ctermbg=none
+    highlight Folded ctermbg=none
+    highlight NonText ctermbg=none
+    highlight SpecialKey ctermbg=none
+    highlight VertSplit ctermbg=none
+    highlight SignColumn ctermbg=none
+endfunction
+autocmd ColorScheme * call AdaptColorscheme()
