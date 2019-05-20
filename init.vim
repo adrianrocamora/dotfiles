@@ -23,7 +23,6 @@ filetype plugin on
 
 
 "colorscheme codedark
-colorscheme triplejelly
 if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
@@ -131,7 +130,7 @@ endif
 "nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
 "nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
 
-function! AdaptColorscheme()
+function AdaptColorscheme()
     highlight clear CursorLine
     highlight Normal ctermbg=none
     highlight LineNr ctermbg=none
@@ -142,3 +141,5 @@ function! AdaptColorscheme()
     highlight SignColumn ctermbg=none
 endfunction
 autocmd ColorScheme * call AdaptColorscheme()
+
+colorscheme triplejelly
