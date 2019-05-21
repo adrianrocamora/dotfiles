@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
+Plug 'w0rp/ale'
 Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -10,6 +11,8 @@ Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+
 "Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
 
 call plug#end()
@@ -79,7 +82,7 @@ endif
 
 " RUN PROGRAMS ON FILE
 nmap <leader>r :!python3 % <CR>
-nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to html --execute %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR>
+nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to html --execute %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox<CR>
 map <leader>l :nohl<CR>
@@ -123,6 +126,9 @@ endif
 "--------------------------------------------------"
 if has('win32')
 else
+
+" We need to automate this :) maybe with a 'next' command
+
 map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva01.jpg<CR><CR>
 map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva02.jpg<CR><CR>
 map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva03.jpg<CR><CR>
@@ -130,6 +136,15 @@ map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /media/
 map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva05.jpg<CR><CR>
 map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva06.jpg<CR><CR>
 map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva07.jpg<CR><CR>
+map <leader>id8 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva08.jpg<CR><CR>
+map <leader>id9 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva09.jpg<CR><CR>
+map <leader>id10 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva10.png<CR><CR>
+map <leader>id11 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva11.jpg<CR><CR>
+map <leader>id12 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva12.jpg<CR><CR>
+map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva13.jpg<CR><CR>
+map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva14.jpg<CR><CR>
+map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva15.jpg<CR><CR>
+
 endif
 "--------------------------------------------------"
 "
