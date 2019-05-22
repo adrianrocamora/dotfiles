@@ -82,7 +82,7 @@ endif
 
 " RUN PROGRAMS ON FILE
 nmap <leader>r :!python3 % <CR>
-nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to html --execute %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
+nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox<CR>
 map <leader>l :nohl<CR>
@@ -145,6 +145,15 @@ map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /media
 map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva14.jpg<CR><CR>
 map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva15.jpg<CR><CR>
 
+map <leader>ib1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh01.jpg<CR><CR>
+map <leader>ib2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh02.jpg<CR><CR>
+map <leader>ib3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh03.jpg<CR><CR>
+map <leader>ib4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh04.png<CR><CR>
+map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh05.jpg<CR><CR>
+map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh06.jpg<CR><CR>
+map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh07.png<CR><CR>
+
+map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/ww00.jpg<CR><CR>
 endif
 "--------------------------------------------------"
 "
