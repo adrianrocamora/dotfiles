@@ -1,19 +1,40 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
-Plug 'w0rp/ale'
 Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/calendar-vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview'
+"Plug 'xuhdev/vim-latex-live-preview'	"python required
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 
 "Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+"
+" Language support 
+Plug 'nikvdp/ejs-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'tpope/vim-jdaddy' "Json text objects
+Plug 'w0rp/ale'
+
+" Formater
+Plug 'Chiel92/vim-autoformat'
+
+"Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
+let g:jsx_ext_required = 0
+
+let g:ale_linters = {
+\	'javascript': [''],
+\}
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 call plug#end()
 
@@ -24,6 +45,9 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 
 filetype plugin on
 
+let g:ale_fixers = {
+\  'javascript': ['eslint'],
+\}
 
 "colorscheme codedark
 if has('win32')
@@ -85,10 +109,12 @@ nmap <leader>r :!python3 % <CR>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox<CR>
-map <leader>l :nohl<CR>
+
+
 
 "let g:user_emmet_leader_key=','
 
+map <leader>l :nohl<CR>
 """ Split Management
 map <leader>n <C-w>=
 map <leader>m <C-w>_
@@ -101,6 +127,14 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+"--------------------------------------------------"
+if has('win32')
+else
+
+""" Update vimwiki
+
+
+endif
 "--------------------------------------------------"
 if has('win32')
 else
@@ -153,7 +187,12 @@ map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /media/
 map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh06.jpg<CR><CR>
 map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh07.png<CR><CR>
 
+map <leader>ix1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x001.png<CR><CR>
+map <leader>ix2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x002.jpg<CR><CR>
+map <leader>ix3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x003.jpdeg<CR><CR>
+
 map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/ww00.jpg<CR><CR>
+
 endif
 "--------------------------------------------------"
 "
@@ -179,5 +218,60 @@ function! AdaptColorscheme()
     highlight SignColumn ctermbg=none
 endfunction
 autocmd ColorScheme * call AdaptColorscheme()
-
 colorscheme triplejelly
+
+function! Wallpapers()
+python3 << EOF
+import os
+import random
+path = '/media/datanix/wallpapers/w'
+files = []
+# r=root, d=directories, f = files
+for r, d, f in os.walk(path):
+    for file in f:
+        if '.jpg'  in file:
+            files.append(os.path.join(r, file))
+random_choice = random.choice(files)
+os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+EOF
+endfunction
+command! -nargs=0 Wallpapers call Wallpapers() 
+map <leader>ii :call Wallpapers()<CR>
+
+function! WallpapersN()
+python3 << EOF
+import os
+import random
+path = '/media/datanix/wallpapers/n'
+files = []
+# r=root, d=directories, f = files
+for r, d, f in os.walk(path):
+    for file in f:
+        if '.jpg'  in file:
+            files.append(os.path.join(r, file))
+random_choice = random.choice(files)
+os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+EOF
+endfunction
+command! -nargs=0 WallpapersN call WallpapersN() 
+map <leader>in :call WallpapersN()<CR>
+
+function! WallpapersX()
+python3 << EOF
+import os
+import random
+path = '/media/datanix/wallpapers/x'
+files = []
+# r=root, d=directories, f = files
+for r, d, f in os.walk(path):
+    for file in f:
+        if '.jpg'  in file:
+            files.append(os.path.join(r, file))
+random_choice= random.choice(files)
+os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+EOF
+endfunction
+command! -nargs=0 WallpapersX call WallpapersX() 
+map <leader>ix :call WallpapersX()<CR>
+
+set clipboard=unnamed
