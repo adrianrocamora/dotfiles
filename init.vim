@@ -92,7 +92,8 @@ set nu
 """ KEYBOARD SHORTCUTS """
 map <F3> ggVGg?
 
-let mapleader = ","
+let mapleader="\<Space>"
+"let mapleader = ","
 
 if has('win32')
 else
@@ -112,7 +113,7 @@ nmap <leader>f :!firefox<CR>
 
 
 
-"let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key=','
 
 map <leader>l :nohl<CR>
 
