@@ -2,8 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
 Plug 'vimwiki/vimwiki'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter' 
+Plug 'tpope/vim-fugitive' 
 Plug 'mattn/calendar-vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
@@ -115,6 +115,7 @@ nmap <leader>f :!firefox<CR>
 "let g:user_emmet_leader_key=','
 
 map <leader>l :nohl<CR>
+
 """ Split Management
 map <leader>n <C-w>=
 map <leader>m <C-w>_
@@ -136,9 +137,12 @@ else
 
 endif
 "--------------------------------------------------"
+
+    
 if has('win32')
 else
 
+    
 """ KANBAN BOARD
 " Close board tab
 map <leader>bc :tabclose<CR>
@@ -229,7 +233,7 @@ files = []
 # r=root, d=directories, f = files
 for r, d, f in os.walk(path):
     for file in f:
-        if '.jpg'  in file:
+        if '.jpg' or '.png' or '.jpeg' in file:
             files.append(os.path.join(r, file))
 random_choice = random.choice(files)
 os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
@@ -237,6 +241,24 @@ EOF
 endfunction
 command! -nargs=0 Wallpapers call Wallpapers() 
 map <leader>ii :call Wallpapers()<CR>
+
+function! WallpapersS()
+python3 << EOF
+import os
+import random
+path = '/media/datanix/wallpapers/s'
+files = []
+# r=root, d=directories, f = files
+for r, d, f in os.walk(path):
+    for file in f:
+        if '.jpg' or '.png' or '.jpeg' in file:
+            files.append(os.path.join(r, file))
+random_choice = random.choice(files)
+os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+EOF
+endfunction
+command! -nargs=0 WallpapersS call WallpapersS() 
+map <leader>is :call WallpapersS()<CR>
 
 function! WallpapersN()
 python3 << EOF
@@ -247,7 +269,7 @@ files = []
 # r=root, d=directories, f = files
 for r, d, f in os.walk(path):
     for file in f:
-        if '.jpg'  in file:
+        if '.jpg' or '.png' or '.jpeg' in file:
             files.append(os.path.join(r, file))
 random_choice = random.choice(files)
 os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
@@ -265,7 +287,7 @@ files = []
 # r=root, d=directories, f = files
 for r, d, f in os.walk(path):
     for file in f:
-        if '.jpg'  in file:
+        if '.jpg' or '.png' or '.jpeg' in file:
             files.append(os.path.join(r, file))
 random_choice= random.choice(files)
 os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
