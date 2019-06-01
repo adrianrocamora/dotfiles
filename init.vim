@@ -26,6 +26,11 @@ Plug 'w0rp/ale'
 " Formater
 Plug 'Chiel92/vim-autoformat'
 
+set background=dark
+
+" Web browser
+Plug 'yuratomo/w3m.vim'
+
 "Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
 let g:jsx_ext_required = 0
 
@@ -38,7 +43,15 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
-"
+"save current buffer
+nnoremap <leader>t :tabe<cr>:te<cr>
+
+"save current buffer
+nnoremap <leader>w :w<cr>
+
+"replace the word under cursor
+nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
+
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
@@ -49,12 +62,11 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \}
 
-"colorscheme codedark
 if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
 else
-	let g:vimwiki_list = [{'path': '/media/datanix/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '/home/rocamora/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 
 
@@ -99,9 +111,9 @@ if has('win32')
 else
 	" GO TO DIRECTORIES
 	map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
-	map <leader>dc :e /media/datanix/code<CR>
-	map <leader>db :e /media/datanix/books<CR>
-	map <leader>dd :e /media/datanix<CR>
+	map <leader>dc :e /home/rocamora/code<CR>
+	map <leader>db :e /home/rocamora/books<CR>
+	map <leader>dd :e /home/rocamora<CR>
 	map <leader>dr :e /home/rocamora<CR>
 endif
 
@@ -109,7 +121,7 @@ endif
 nmap <leader>r :!python3 % <CR>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
-nmap <leader>f :!firefox<CR>
+nmap <leader>f :!firefox %<CR>
 
 
 
@@ -149,16 +161,16 @@ else
 map <leader>bc :tabclose<CR>
 
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>
+map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
 " Full board: triage, later, soon, doing, today, done, archive
-map <leader>bf :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR> 
+map <leader>bf :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR> 
 
 " Triage board: triage, later, soon, doing
-map <leader>bt :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR> 
+map <leader>bt :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR> 
 
 " Archiving board: done, archive
-map <leader>ba :tabnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR>
+map <leader>ba :tabnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR>
 
 endif
 
@@ -168,35 +180,35 @@ else
 
 " We need to automate this :) maybe with a 'next' command
 
-map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva01.jpg<CR><CR>
-map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva02.jpg<CR><CR>
-map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva03.jpg<CR><CR>
-map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva04.jpg<CR><CR>
-map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva05.jpg<CR><CR>
-map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva06.jpg<CR><CR>
-map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva07.jpg<CR><CR>
-map <leader>id8 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva08.jpg<CR><CR>
-map <leader>id9 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva09.jpg<CR><CR>
-map <leader>id10 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva10.png<CR><CR>
-map <leader>id11 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva11.jpg<CR><CR>
-map <leader>id12 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva12.jpg<CR><CR>
-map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva13.jpg<CR><CR>
-map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva14.jpg<CR><CR>
-map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva15.jpg<CR><CR>
+map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva01.jpg<CR><CR>
+map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva02.jpg<CR><CR>
+map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva03.jpg<CR><CR>
+map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva04.jpg<CR><CR>
+map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva05.jpg<CR><CR>
+map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva06.jpg<CR><CR>
+map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva07.jpg<CR><CR>
+map <leader>id8 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva08.jpg<CR><CR>
+map <leader>id9 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva09.jpg<CR><CR>
+map <leader>id10 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva10.png<CR><CR>
+map <leader>id11 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva11.jpg<CR><CR>
+map <leader>id12 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva12.jpg<CR><CR>
+map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva13.jpg<CR><CR>
+map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva14.jpg<CR><CR>
+map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva15.jpg<CR><CR>
 
-map <leader>ib1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh01.jpg<CR><CR>
-map <leader>ib2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh02.jpg<CR><CR>
-map <leader>ib3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh03.jpg<CR><CR>
-map <leader>ib4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh04.png<CR><CR>
-map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh05.jpg<CR><CR>
-map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh06.jpg<CR><CR>
-map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh07.png<CR><CR>
+map <leader>ib1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh01.jpg<CR><CR>
+map <leader>ib2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh02.jpg<CR><CR>
+map <leader>ib3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh03.jpg<CR><CR>
+map <leader>ib4 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh04.png<CR><CR>
+map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh05.jpg<CR><CR>
+map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh06.jpg<CR><CR>
+map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh07.png<CR><CR>
 
-map <leader>ix1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x001.png<CR><CR>
-map <leader>ix2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x002.jpg<CR><CR>
-map <leader>ix3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x003.jpdeg<CR><CR>
+map <leader>ix1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x001.png<CR><CR>
+map <leader>ix2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x002.jpg<CR><CR>
+map <leader>ix3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x003.jpdeg<CR><CR>
 
-map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/ww00.jpg<CR><CR>
+map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/ww00.jpg<CR><CR>
 
 endif
 "--------------------------------------------------"
@@ -212,78 +224,30 @@ endif
 "nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
 "nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
 
-function! AdaptColorscheme()
-    highlight clear CursorLine
-    highlight Normal ctermbg=none
-    highlight LineNr ctermbg=none
-    highlight Folded ctermbg=none
-    highlight NonText ctermbg=none
-    highlight SpecialKey ctermbg=none
-    highlight VertSplit ctermbg=none
-    highlight SignColumn ctermbg=none
-endfunction
-autocmd ColorScheme * call AdaptColorscheme()
-colorscheme triplejelly
+"function! AdaptColorscheme()
+	"highlight clear CursorLine
+	"highlight Normal ctermbg=none
+	"highlight LineNr ctermbg=none
+	"highlight Folded ctermbg=none
+	"highlight NonText ctermbg=none
+	"highlight SpecialKey ctermbg=none
+	"highlight VertSplit ctermbg=none
+	"highlight SignColumn ctermbg=none
+"endfunction
+"autocmd ColorScheme * call AdaptColorscheme()
+"colorscheme jellyx
+"colorscheme triplejelly
+"colorscheme codeblocks_dark
 
-function! Wallpapers()
+"--------------------------------------------------"
+" Random wallpapers by category on Gnome
+function! Wallpapers(arg)
 python3 << EOF
 import os
+import vim
 import random
-path = '/media/datanix/wallpapers/w'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 Wallpapers call Wallpapers() 
-map <leader>ii :call Wallpapers()<CR>
+path = '/home/rocamora/wallpapers/' + vim.eval("a:arg")
 
-function! WallpapersS()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/s'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 WallpapersS call WallpapersS() 
-map <leader>is :call WallpapersS()<CR>
-
-function! WallpapersN()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/n'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 WallpapersN call WallpapersN() 
-map <leader>in :call WallpapersN()<CR>
-
-function! WallpapersX()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/x'
 files = []
 # r=root, d=directories, f = files
 for r, d, f in os.walk(path):
@@ -291,10 +255,21 @@ for r, d, f in os.walk(path):
         if '.jpg' or '.png' or '.jpeg' in file:
             files.append(os.path.join(r, file))
 random_choice= random.choice(files)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+#print(random_choice)
+#print('Arg is ' + vim.eval("a:arg"))
+print(path)
+os.system('gsettings set org.gnome.desktop.background picture-uri ' + random_choice)
 EOF
 endfunction
-command! -nargs=0 WallpapersX call WallpapersX() 
-map <leader>ix :call WallpapersX()<CR>
+command! -nargs=0 Wallpapers call Wallpapers() 
 
-set clipboard=unnamed
+map <leader>ii :call Wallpapers('n')<CR>
+
+map <leader>ib :call Wallpapers('b')<CR>
+map <leader>id :call Wallpapers('d')<CR>
+map <leader>in :call Wallpapers('n')<CR>
+map <leader>is :call Wallpapers('s')<CR>
+map <leader>iw :call Wallpapers('w')<CR>
+map <leader>ix :call Wallpapers('x')<CR>
+"--------------------------------------------------"
+"
