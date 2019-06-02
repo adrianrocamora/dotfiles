@@ -241,7 +241,7 @@ endif
 
 "--------------------------------------------------"
 " Random wallpapers by category on Gnome
-function! Wallpapers(arg)
+function! Wallpapers(dir, mode)
 python3 << EOF
 
 import os
@@ -249,32 +249,59 @@ import vim
 import random
 from PIL import Image, ImageDraw
 
-path = '/home/rocamora/wallpapers/' + vim.eval("a:arg")
-panel_w = 1000
-panel_h = 1000
-img_wp = Image.new('RGB', (panel_w*2, panel_h), color='black')
+path = '/home/rocamora/wallpapers/' + vim.eval("a:dir")
+mode = vim.eval("a:mode")
 
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' in file:
-            files.append(os.path.join(r, file))
-random_choices = random.sample(files, k=2)
+if mode == 'tall':
+	panel_w = 1000
+	panel_h = 1000
+	img_wp = Image.new('RGB', (panel_w*2, panel_h), color='black')
 
-img_left = Image.open(random_choices[0])
-img_left.thumbnail((panel_w, panel_h))
-img_right = Image.open(random_choices[1])
-img_right.thumbnail((panel_w, panel_h))
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=2)
 
-img_left_x0 = 0 + (panel_w - img_left.width)//2
-img_left_y0 = 0 + (panel_h - img_left.height)//2
+	img_left = Image.open(random_choices[0])
+	img_left.thumbnail((panel_w, panel_h))
+	img_right = Image.open(random_choices[1])
+	img_right.thumbnail((panel_w, panel_h))
 
-img_right_y0 = 0 + (panel_h - img_right.height)//2
-img_right_x0 = panel_w + (panel_w - img_right.width)//2
+	img_left_x0 = 0 + (panel_w - img_left.width)//2
+	img_left_y0 = 0 + (panel_h - img_left.height)//2
 
-img_wp.paste(img_left, (img_left_x0, img_left_y0))
-img_wp.paste(img_right, (img_right_x0, img_right_y0))
+	img_right_y0 = 0 + (panel_h - img_right.height)//2
+	img_right_x0 = panel_w + (panel_w - img_right.width)//2
+
+	img_wp.paste(img_left, (img_left_x0, img_left_y0))
+	img_wp.paste(img_right, (img_right_x0, img_right_y0))
+
+lif mode == 'wide':
+	panel_w = 2000
+	panel_h = 1000
+	img_wp = Image.new('RGB', (panel_w, panel_h), color='black')
+
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=1)
+
+	img = Image.open(random_choices[0])
+	img.thumbnail((panel_w, panel_h))
+
+	img_x0 = (panel_w - img.width)//2
+	img_y0 = (panel_h - img.height)//2
+
+	img_wp.paste(img, (img_x0, img_y0))
+
+else:
+	pass
 
 wp_fullpath = '/home/rocamora/wallpapers/wp.png'
 img_wp.save(wp_fullpath)
@@ -284,13 +311,13 @@ EOF
 endfunction
 command! -nargs=0 Wallpapers call Wallpapers() 
 
-map <leader>ii :call WallpaperMix('n')<CR>
+map <leader>ii :call Wallpapers('nw', 'wide')<CR>
 
-map <leader>ib :call Wallpapers('b')<CR>
-map <leader>id :call Wallpapers('d')<CR>
+map <leader>ib :call Wallpapers('b', 'tall')<CR>
+map <leader>id :call Wallpapers('d', 'tall')<CR>
+map <leader>is :call Wallpapers('s', 'tall')<CR>
+map <leader>ix :call Wallpapers('x', 'tall')<CR>
 "map <leader>in :call Wallpapers('n')<CR>
-map <leader>is :call Wallpapers('s')<CR>
-map <leader>iw :call Wallpapers('w')<CR>
-map <leader>ix :call Wallpapers('x')<CR>
+"map <leader>iw :call Wallpapers('w')<CR>
 "--------------------------------------------------"
 "
