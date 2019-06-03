@@ -26,6 +26,10 @@ Plug 'w0rp/ale'
 " Formater
 Plug 'Chiel92/vim-autoformat'
 
+
+let g:airline_section_a = ''
+let g:airline_section_y = ''
+
 set background=dark
 
 " Web browser
@@ -118,7 +122,7 @@ else
 endif
 
 " RUN PROGRAMS ON FILE
-nmap <leader>r :!python3 % <CR>
+nmap <leader>r :cd %:h<CR>:!python3 %<CR>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox %<CR>
@@ -161,7 +165,8 @@ else
 map <leader>bc :tabclose<CR>
 
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
 " Full board: triage, later, soon, doing, today, done, archive
 map <leader>bf :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR> 
@@ -173,46 +178,7 @@ map <leader>bt :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew
 map <leader>ba :tabnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR>
 
 endif
-
 "--------------------------------------------------"
-if has('win32')
-else
-
-" We need to automate this :) maybe with a 'next' command
-
-map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva01.jpg<CR><CR>
-map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva02.jpg<CR><CR>
-map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva03.jpg<CR><CR>
-map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva04.jpg<CR><CR>
-map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva05.jpg<CR><CR>
-map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva06.jpg<CR><CR>
-map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva07.jpg<CR><CR>
-map <leader>id8 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva08.jpg<CR><CR>
-map <leader>id9 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva09.jpg<CR><CR>
-map <leader>id10 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva10.png<CR><CR>
-map <leader>id11 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva11.jpg<CR><CR>
-map <leader>id12 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva12.jpg<CR><CR>
-map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva13.jpg<CR><CR>
-map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva14.jpg<CR><CR>
-map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/dva15.jpg<CR><CR>
-
-map <leader>ib1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh01.jpg<CR><CR>
-map <leader>ib2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh02.jpg<CR><CR>
-map <leader>ib3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh03.jpg<CR><CR>
-map <leader>ib4 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh04.png<CR><CR>
-map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh05.jpg<CR><CR>
-map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh06.jpg<CR><CR>
-map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/bnh07.png<CR><CR>
-
-map <leader>ix1 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x001.png<CR><CR>
-map <leader>ix2 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x002.jpg<CR><CR>
-map <leader>ix3 :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/x003.jpdeg<CR><CR>
-
-map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /home/rocamora/wallpapers/ww00.jpg<CR><CR>
-
-endif
-"--------------------------------------------------"
-"
 
 " RUN PROGRAM ON TEXT
 "map <leader>i :!i_view32.exe %:p:h<CR>
@@ -279,7 +245,7 @@ if mode == 'tall':
 	img_wp.paste(img_left, (img_left_x0, img_left_y0))
 	img_wp.paste(img_right, (img_right_x0, img_right_y0))
 
-lif mode == 'wide':
+elif mode == 'wide':
 	panel_w = 2000
 	panel_h = 1000
 	img_wp = Image.new('RGB', (panel_w, panel_h), color='black')
@@ -306,6 +272,8 @@ else:
 wp_fullpath = '/home/rocamora/wallpapers/wp.png'
 img_wp.save(wp_fullpath)
 os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+#os.system('feh --bg-fill ' + wp_fullpath)
+
 
 EOF
 endfunction
