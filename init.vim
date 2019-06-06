@@ -266,6 +266,8 @@ elif mode == 'wide':
 
 	img_wp.paste(img, (img_x0, img_y0))
 
+elif mode == 'color':
+	img_wp = Image.new('RGB', (2000, 1000), color='black')
 else:
 	pass
 
@@ -279,8 +281,9 @@ EOF
 endfunction
 command! -nargs=0 Wallpapers call Wallpapers() 
 
-map <leader>ii :call Wallpapers('nw', 'wide')<CR>
+map <leader>ii :call Wallpapers('nw', 'color')<CR>
 
+map <leader>iw :call Wallpapers('nw', 'wide')<CR>
 map <leader>ib :call Wallpapers('b', 'tall')<CR>
 map <leader>id :call Wallpapers('d', 'tall')<CR>
 map <leader>is :call Wallpapers('s', 'tall')<CR>
