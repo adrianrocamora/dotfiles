@@ -79,7 +79,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 "save current buffer
-nnoremap <leader>tt :Toch<cr>
+nnoremap <leader>t :Toch<cr>
 
 "save current buffer
 nnoremap <leader>w :w<cr>
@@ -376,7 +376,7 @@ EOF
 endfun
 noremap <leader>e :call ShowEquation()<CR>
 
-noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
+"noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
 
 
 
