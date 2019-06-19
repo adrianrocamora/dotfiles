@@ -57,6 +57,7 @@ Plug 'gaalcaras/ncm-R'
 Plug 'ncm2/ncm2-cssomni'
 
 
+let g:vim_markdown_folding_disabled = 1
 
 let g:airline_section_a = ''
 let g:airline_section_y = ''
@@ -101,7 +102,7 @@ if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
 else
-	let g:vimwiki_list = [{'path': '/home/rocamora/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '/media/rocamora/datawin/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 
 
@@ -263,7 +264,7 @@ if mode == 'tall':
 	# r=root, d=directories, f = files
 	for r, d, f in os.walk(path):
 		for file in f:
-			if '.jpg' or '.png' in file:
+			if '.jpg' or '.png' or '.webp' in file:
 				files.append(os.path.join(r, file))
 	random_choices = random.sample(files, k=2)
 
@@ -325,6 +326,7 @@ map <leader>ib :call Wallpapers('b', 'tall')<CR>
 map <leader>id :call Wallpapers('d', 'tall')<CR>
 map <leader>is :call Wallpapers('s', 'tall')<CR>
 map <leader>ix :call Wallpapers('x', 'tall')<CR>
+map <leader>ir :call Wallpapers('r', 'tall')<CR>
 "map <leader>in :call Wallpapers('n')<CR>
 "map <leader>iw :call Wallpapers('w')<CR>
 "--------------------------------------------------"
