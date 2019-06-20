@@ -149,14 +149,17 @@ map <F3> ggVGg?
 let mapleader="\<Space>"
 "let mapleader = ","
 
+" GO TO DIRECTORIES
 if has('win32')
+	map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
+	map <leader>dc :e D:/code<CR>
+	map <leader>db :e D:/books<CR>
+	map <leader>dd :e ~/<CR>
 else
-	" GO TO DIRECTORIES
 	map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
 	map <leader>dc :e /home/rocamora/code<CR>
 	map <leader>db :e /home/rocamora/books<CR>
 	map <leader>dd :e /home/rocamora<CR>
-	map <leader>dr :e /home/rocamora<CR>
 endif
 
 " RUN PROGRAMS ON FILE
@@ -197,17 +200,16 @@ else
 endif
 "--------------------------------------------------"
 
-    
-if has('win32')
-else
-
-    
 """ KANBAN BOARD
 " Close board tab
 map <leader>bc :tabclose<CR>
-
+    
+if has('win32')
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/index.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban-done.md<CR>
+map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
+else
+" Main board: soon, doing, today, done 
+map <leader>bb :tabnew /media/rocamora/datawin/mdwiki/wiki/index.md<CR>:vnew /media/rocamora/datawin/mdwiki/wiki/kanban-done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
@@ -387,5 +389,10 @@ noremap <leader>e :call ShowEquation()<CR>
 "noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
 
 
+
+if has('win32')
+colorscheme jellyx
+else
+endif
 
 
