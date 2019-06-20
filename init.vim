@@ -11,7 +11,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'mattn/calendar-vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
+if has('win32')
+else
 Plug 'xuhdev/vim-latex-live-preview'	"python required
+endif
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
@@ -37,8 +40,11 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
+if has('win32')
+else
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
+endif
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
