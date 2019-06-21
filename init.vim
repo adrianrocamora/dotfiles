@@ -35,8 +35,6 @@ Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
 
 
-
-
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
@@ -107,6 +105,7 @@ let g:ale_fixers = {
 if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
+	let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 else
 	let g:vimwiki_list = [{'path': '/media/rocamora/datawin/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
@@ -387,8 +386,6 @@ endfun
 noremap <leader>e :call ShowEquation()<CR>
 
 "noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
-
-
 
 if has('win32')
 colorscheme jellyx
