@@ -83,15 +83,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
-"save current buffer
-nnoremap <leader>t :Toch<cr>
-
-"save current buffer
-nnoremap <leader>w :w<cr>
-
-"replace the word under cursor
-nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
-
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
@@ -148,6 +139,18 @@ map <F3> ggVGg?
 let mapleader="\<Space>"
 "let mapleader = ","
 
+"save current buffer
+nnoremap <leader>t :Toch<cr>
+
+"save current buffer
+nnoremap <leader>w :w<cr>
+
+"replace the word under cursor
+nnoremap <leader>c :%s/\<<c-r><c-w>\>//g<left><left>
+
+"clear highlighting
+map <leader>l :nohl<CR>
+
 " GO TO DIRECTORIES
 if has('win32')
 	map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
@@ -167,6 +170,11 @@ nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter
 
 nmap <leader>f :!firefox %<CR>
 
+nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+"nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+
 " Show Table of Content
 nmap <leader>t :Toch<CR>
 
@@ -174,11 +182,10 @@ nmap <leader>t :Toch<CR>
 
 let g:user_emmet_leader_key=','
 
-map <leader>l :nohl<CR>
 
 """ Split Management
 map <leader>n <C-w>=
-map <leader>m <C-w>_
+"map <leader>m <C-w>_
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -289,11 +296,11 @@ if mode == 'tall':
 	img_wp.paste(img_left, (img_left_x0, img_left_y0))
 	img_wp.paste(img_right, (img_right_x0, img_right_y0))
 
-elif mode == 'wide':
-	panel_w = 2000
-	panel_h = 1000
-	img_wp = Image.new('RGB', (panel_w, panel_h), color='black')
+	wp_fullpath = '/home/rocamora/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 
+elif mode == 'wide':
 	files = []
 	# r=root, d=directories, f = files
 	for r, d, f in os.walk(path):
@@ -302,25 +309,17 @@ elif mode == 'wide':
 				files.append(os.path.join(r, file))
 	random_choices = random.sample(files, k=1)
 
-	img = Image.open(random_choices[0])
-	img.thumbnail((panel_w, panel_h))
-
-	img_x0 = (panel_w - img.width)//2
-	img_y0 = (panel_h - img.height)//2
-
-	img_wp.paste(img, (img_x0, img_y0))
+	wp_fullpath = random_choices[0]
+	print(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 
 elif mode == 'color':
 	img_wp = Image.new('RGB', (2000, 1000), color='black')
+	wp_fullpath = '/home/rocamora/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 else:
 	pass
-
-wp_fullpath = '/home/rocamora/wallpapers/wp.png'
-img_wp.save(wp_fullpath)
-os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
-#os.system('feh --bg-fill ' + wp_fullpath)
-#feh --bg-fill path/l --bg-fill path/r
-
 
 EOF
 endfunction
@@ -328,11 +327,20 @@ command! -nargs=0 Wallpapers call Wallpapers()
 
 map <leader>ii :call Wallpapers('nw', 'color')<CR>
 
-map <leader>iw :call Wallpapers('nw', 'wide')<CR>
+map <leader>inw :call Wallpapers('nw', 'wide')<CR>
+map <leader>icw :call Wallpapers('cw', 'wide')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
+map <leader>ibw :call Wallpapers('bw', 'wide')<CR>
+map <leader>isw :call Wallpapers('sw', 'wide')<CR>
+map <leader>iww :call Wallpapers('ww', 'wide')<CR>
+
+map <leader>ix :call Wallpapers('x', 'tall')<CR>
+map <leader>ixa :call Wallpapers('ax', 'wide')<CR>
+map <leader>ixw :call Wallpapers('xw', 'wide')<CR>
+
 map <leader>ib :call Wallpapers('b', 'tall')<CR>
 map <leader>id :call Wallpapers('d', 'tall')<CR>
 map <leader>is :call Wallpapers('s', 'tall')<CR>
-map <leader>ix :call Wallpapers('x', 'tall')<CR>
 map <leader>ir :call Wallpapers('r', 'tall')<CR>
 "map <leader>in :call Wallpapers('n')<CR>
 "map <leader>iw :call Wallpapers('w')<CR>
