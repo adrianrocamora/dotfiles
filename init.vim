@@ -96,9 +96,9 @@ let g:ale_fixers = {
 if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
-	let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	"let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 else
-	let g:vimwiki_list = [{'path': '/media/rocamora/datawin/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '/home/rocamora/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 
 
@@ -153,12 +153,13 @@ map <leader>l :nohl<CR>
 
 " GO TO DIRECTORIES
 if has('win32')
-	map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
-	map <leader>dc :e D:/code<CR>
-	map <leader>db :e D:/books<CR>
-	map <leader>dd :e ~/<CR>
+	"map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
+	"map <leader>dc :e D:/code<CR>
+	"map <leader>db :e D:/books<CR>
+	"map <leader>dd :e ~/<CR>
 else
-	map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
+	"map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
+	map <leader>di :e /home/rocamora/code/dot_files/init.vim<CR>
 	map <leader>dc :e /home/rocamora/code<CR>
 	map <leader>db :e /home/rocamora/books<CR>
 	map <leader>dd :e /home/rocamora<CR>
@@ -212,10 +213,10 @@ map <leader>bc :tabclose<CR>
     
 if has('win32')
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
+"map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
 else
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /media/rocamora/datawin/mdwiki/wiki/index.md<CR>:vnew /media/rocamora/datawin/mdwiki/wiki/kanban-done.md<CR>
+map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban-done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
@@ -398,6 +399,7 @@ noremap <leader>e :call ShowEquation()<CR>
 if has('win32')
 colorscheme jellyx
 else
+colorscheme codedark
 endif
 
 
