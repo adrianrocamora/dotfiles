@@ -399,7 +399,8 @@ noremap <leader>e :call ShowEquation()<CR>
 if has('win32')
 colorscheme jellyx
 else
-colorscheme codedark
+"colorscheme codedark
+colorscheme molokai
 endif
 
 
