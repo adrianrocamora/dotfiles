@@ -139,8 +139,7 @@ map <F3> ggVGg?
 let mapleader="\<Space>"
 "let mapleader = ","
 
-"save current buffer
-nnoremap <leader>t :Toch<cr>
+"
 
 "save current buffer
 nnoremap <leader>w :w<cr>
@@ -167,6 +166,9 @@ endif
 
 " RUN PROGRAMS ON FILE
 nmap <leader>r :cd %:h<CR>:!python3 %<CR>
+nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
+nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
+nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox %<CR>
@@ -177,7 +179,7 @@ nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
 
 
 " Show Table of Content
-nmap <leader>t :Toch<CR>
+"nmap <leader>t :Toch<CR>
 
 
 
@@ -185,7 +187,7 @@ let g:user_emmet_leader_key=','
 
 
 """ Split Management
-map <leader>n <C-w>=
+map <leader>= <C-w>=
 "map <leader>m <C-w>_
 
 nnoremap <C-J> <C-W><C-J>
@@ -400,7 +402,20 @@ if has('win32')
 colorscheme jellyx
 else
 "colorscheme codedark
-colorscheme molokai
+"colorscheme wombat256dave
+"colorscheme molokaidark
+colorscheme earth
 endif
 
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
