@@ -419,3 +419,5 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
+" Exit neovim terminal with ESC
+:tnoremap <Esc> <C-\><C-n>
