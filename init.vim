@@ -6,6 +6,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+Plug 'gcmt/taboo.vim'
+
 Plug 'scrooloose/nerdcommenter' 
 Plug 'tpope/vim-fugitive' 
 Plug 'mattn/calendar-vim'
@@ -30,6 +32,9 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'tpope/vim-jdaddy' "Json text objects
 Plug 'w0rp/ale'
+
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Formater
 Plug 'Chiel92/vim-autoformat'
