@@ -8,6 +8,12 @@ Plug 'plasticboy/vim-markdown'
 
 Plug 'gcmt/taboo.vim'
 
+Plug 'skammer/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+
 Plug 'scrooloose/nerdcommenter' 
 Plug 'tpope/vim-fugitive' 
 Plug 'mattn/calendar-vim'
@@ -15,7 +21,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
 if has('win32')
 else
-Plug 'xuhdev/vim-latex-live-preview'	"python required
+"Plug 'xuhdev/vim-latex-live-preview'	"python required
 endif
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
@@ -40,13 +46,13 @@ Plug 'mxw/vim-jsx'
 Plug 'Chiel92/vim-autoformat'
 
 
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
 
 if has('win32')
 else
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+"autocmd BufEnter * call ncm2#enable_for_buffer()
 endif
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
@@ -103,7 +109,7 @@ if has('win32')
 	set shellcmdflag=-command
 	"let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 else
-	let g:vimwiki_list = [{'path': '/home/rocamora/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '~/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 
 
@@ -162,11 +168,11 @@ if has('win32')
 	"map <leader>db :e D:/books<CR>
 	"map <leader>dd :e ~/<CR>
 else
-	"map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
-	map <leader>di :e /home/rocamora/code/dot_files/init.vim<CR>
-	map <leader>dc :e /home/rocamora/code<CR>
-	map <leader>db :e /home/rocamora/books<CR>
-	map <leader>dd :e /home/rocamora<CR>
+	"map <leader>di :e ~/.config/nvim/init.vim<CR>
+	map <leader>di :e ~/code/dot_files/init.vim<CR>
+	map <leader>dc :e ~/code<CR>
+	map <leader>db :e ~/books<CR>
+	map <leader>dd :e ~<CR>
 endif
 
 " RUN PROGRAMS ON FILE
@@ -223,7 +229,7 @@ if has('win32')
 "map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
 else
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban-done.md<CR>
+map <leader>bb :tabnew ~/code/mdwiki/wiki/kanban-done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 "map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
@@ -274,7 +280,7 @@ import vim
 import random
 from PIL import Image, ImageDraw
 
-path = '/home/rocamora/wallpapers/' + vim.eval("a:dir")
+path = '~/wallpapers/' + vim.eval("a:dir")
 mode = vim.eval("a:mode")
 
 if mode == 'tall':
@@ -304,7 +310,7 @@ if mode == 'tall':
 	img_wp.paste(img_left, (img_left_x0, img_left_y0))
 	img_wp.paste(img_right, (img_right_x0, img_right_y0))
 
-	wp_fullpath = '/home/rocamora/wallpapers/wp.png'
+	wp_fullpath = '~/wallpapers/wp.png'
 	img_wp.save(wp_fullpath)
 	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 
@@ -323,7 +329,7 @@ elif mode == 'wide':
 
 elif mode == 'color':
 	img_wp = Image.new('RGB', (2000, 1000), color='black')
-	wp_fullpath = '/home/rocamora/wallpapers/wp.png'
+	wp_fullpath = '~/wallpapers/wp.png'
 	img_wp.save(wp_fullpath)
 	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 else:
@@ -355,7 +361,7 @@ map <leader>ir :call Wallpapers('r', 'tall')<CR>
 "--------------------------------------------------"
 fun! ShowEquation()
     "exec ":'<,'>! python3 -c \"import sys;print('rie-chan ' + sys.stdin.read())\""
-    "exec ":'<,'>! python3 /home/rocamora/code/vim-equations/main.py"
+    "exec ":'<,'>! python3 ~/code/vim-equations/main.py"
 
 python3 << EOF
 
@@ -394,7 +400,7 @@ equation_escaped = equation_in.translate(str.maketrans({"_":  r"\_",
 # equation_escaped = equation_escaped.translate({ord(c): None for c in string.whitespace})
 print(equation_escaped)
 
-os.system('/home/rocamora/apps/l2p -i ' + equation_escaped + '  >/dev/null 2>&1')
+os.system('~/apps/l2p -i ' + equation_escaped + '  >/dev/null 2>&1')
 os.system('feh -x eqn.png  >/dev/null 2>&1')
 
 EOF
