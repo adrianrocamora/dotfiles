@@ -1,262 +1,872 @@
-set nocompatible
-filetype off
+"call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-call vundle#end()
-filetype plugin indent on
-
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vimwiki/vimwiki'
-Plugin 'mattn/calendar-vim'
-Plugin 'kkoenig/wimproved.vim'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'vim-scripts/a.vim'
-
-" Windows utils
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-
-Plugin 'tomtom/tlib_vim'
-
-" Code snippets
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'honza/vim-snippets'
-
-" Better folding 
-Plugin 'tmhedberg/SimpylFold'
-
-" 
-Plugin 'vim-scripts/indentpython.vim'
-
-" Code completion
-"Bundle 'Valloric/YouCompleteMe'
-
-" Syntax checking / highlighting
-Plugin 'w0rp/ale'
-"Plugin 'vim-syntastic/syntastic'
 
 " Colorschemes
-Plugin 'flazz/vim-colorschemes'
-"Plugin 'sheerun/vim-wombat-scheme'			" Both?
-"Plugin 'altercation/vim-colors-solarized'	" For GUI
-Plugin 'jnurmine/Zenburn'					" For terminal
+Plug 'vimwiki/vimwiki'
 
-" PEP 8 checking (python)
-Plugin 'nvie/vim-flake8'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-" Image viewing (requires python)
-" Plugin 'ashisha/image.vim'
+Plug 'gcmt/taboo.vim'
 
-" Image viewing (requires python)
-" Plugin 'ashisha/image.vim'
+Plug 'skammer/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'cakebaker/scss-syntax.vim'
 
-" Fuzzy search
-Plugin 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter' 
+Plug 'tpope/vim-fugitive' 
+Plug 'mattn/calendar-vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'lervag/vimtex'
+if has('win32')
+else
+"Plug 'xuhdev/vim-latex-live-preview'	"python required
+endif
+Plug 'mattn/emmet-vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+"Plug 'masukomi/vim-markdown-folding'
 
-set backupdir=./.backup,.,/tmp
-set directory=.,./.backup,/tmp
-set noswapfile
+"Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+"
+" Language support 
+Plug 'nikvdp/ejs-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'tpope/vim-jdaddy' "Json text objects
+Plug 'w0rp/ale'
 
-map <F3> ggVGg?
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
-"set nocompatible
-"filetype plugin on
-syntax on
+" Formater
+Plug 'Chiel92/vim-autoformat'
 
-"set softtabstop=4
+
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+
+if has('win32')
+else
+" enable ncm2 for all buffers
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+endif
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+"NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
+Plug 'artur-shaik/vim-javacomplete2', {'for': ['java', 'jsp']}
+Plug 'gaalcaras/ncm-R'
+Plug 'ncm2/ncm2-cssomni'
+
+
+"let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled = 0
+
+let g:airline_section_a = ''
+let g:airline_section_y = ''
+
+set background=dark
+
+" Web browser
+Plug 'yuratomo/w3m.vim'
+
+"Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
+let g:jsx_ext_required = 0
+
+let g:ale_linters = {
+\	'javascript': [''],
+\}
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
+call plug#end()
 
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-" TODO: Review this guy
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+filetype plugin on
+
+let g:ale_fixers = {
+\  'javascript': ['eslint'],
+\}
+
+if has('win32')
+	set shell=powershell
+	set shellcmdflag=-command
+	"let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+else
+	let g:vimwiki_list = [{'path': '~/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+endif
+
+
+
+set noswapfile " FIx global paste
+inoremap <silent>  <S-Insert>  <C-R>+
+
+syntax on
+
+" Expand tabs only for python
+autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
+" Add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
 
-set enc=utf-8
+set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf8,prcs
-"On Windows
-"set guifont=DejaVu\ Sans\ Mono:h12 " Good
-"set guifont=DejaVu\ Sans\ Mono:h10
-set guifont=DejaVu\ Sans\ Mono:h12 " Good
-"set guifont=LucidaConsole:h9
-"set guifont=Monaco:h14
-"set guifont=Andale\ Mono:h18
-"set guifontwide=NSimsun:h10
-set encoding=utf-8
-set scrolloff=3
 set autoindent
-set showmode
-set showcmd
-set hidden
-set wildmenu
-set wildmode=list:longest
 set visualbell
-"set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
+set nu
 
-set noeol
+" Jupytext comment color change for now
+":hi Comment guifg=#A6C22E
 
-set laststatus=2
-"set relativenumber
-"set undofile
 
-set wrap!
-"set textwidth=79
-set formatoptions=qrn1
-"set colorcolumn=85
+"--------------------------------------------------"
+""" KEYBOARD SHORTCUTS """
+map <F3> ggVGg?
 
-"Help 'formatoptions'
-set fo-=or
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Line numbers
-:set nu
-":set nu!
+let mapleader="\<Space>"
+"let mapleader = ","
 
-" Denoobifier
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+"
 
-inoremap <C-space> <Esc>
+"save current buffer
+nnoremap <leader>w :w<cr>
 
-" Kill the capslock when leaving insert mode.
+"replace the word under cursor
+nnoremap <leader>c :%s/\<<c-r><c-w>\>//g<left><left>
 
-" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
-for c in range(char2nr('A'), char2nr('Z'))
-  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
-  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
-endfor
+"clear highlighting
+map <leader>l :nohl<CR>
 
-autocmd InsertLeave * set iminsert=0
-
-"No help
-"inoremap <F1> <ESC>
-"nnoremap <F1> <ESC>
-"vnoremap <F1> <ESC>
-
-" Remap to make faster closing of vim
-"nnoremap ; :
-
-" Change leader
-let mapleader = ","
-
-" Remap Escape
-"inoremap jj <ESC>
-imap jj <ESC>
-
-" Run python on current file
-" nmap <leader>r :w<CR>:!python - 
-":set makeprg=python\ %
-
-" Window splitting
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Commenting blocks of code.
-"autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-"autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-"autocmd FileType conf,fstab       let b:comment_leader = '# '
-"autocmd FileType tex              let b:comment_leader = '% '
-"autocmd FileType mail             let b:comment_leader = '> '
-"autocmd FileType vim              let b:comment_leader = '" '
-"noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-"noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-
-"cd C:\Users\johnrocamora\Dropbox\0_Vim
-
-" Python support
-"autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-"autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-"autocmd BufRead *.py nmap <F5> :!python "%"<CR>
-
-" Ctrl-l redraws the screen and removes any search highlighting
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-" Matlab
-"map <leader>r :w<CR>:!"C:\Program Files\MATLAB\R2013a\bin\matlab" -nodesktop -nosplash -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
-"map <leader>r :w<CR>:!"C:\Program Files\MATLAB\R2013a\bin\matlab" -automation -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
-"map <leader>r :w<CR>:!"C:\Program Files\MATLAB\R2013a\bin\matlab" -automation -r "run %:p, pause, quit" <CR>
-
-"map <leader>p :w<CR>:!runCpp <CR>
-
-"map <leader>j <CR>:!runJava<CR>
-
-"set autochdir
-
-":colorscheme wombat
-
-set wrap
-"let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
-"let g:vimwiki_list = [{'path': 'D:/Dropbox/vimwiki'}]
-"set ma
-"let g:vimwiki_folding='list' " too slow!
-
-:set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=L  "remove left-hand scroll bar
-
-"WSetAlpha(200)
-"let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
-
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-
-" Enable folding with the spacebar
-nnoremap <space> za
-
-" Flag unnecessary whitespace
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-set encoding=utf-8
-
-"python with virtualenv support
-
-let python_highlight_all=1
-syntax on
-
-if has('gui_running')
-  set background=dark
-  "colorscheme wombat
-  colorscheme solarized
+" GO TO DIRECTORIES
+if has('win32')
+	"map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
+	"map <leader>dc :e D:/code<CR>
+	"map <leader>db :e D:/books<CR>
+	"map <leader>dd :e ~/<CR>
 else
-  "colorscheme wombat
-  "colorscheme zenburn
-  colorscheme molokai
+	"map <leader>di :e ~/.config/nvim/init.vim<CR>
+	map <leader>di :e ~/code/dot_files/init.vim<CR>
+	map <leader>dc :e ~/code<CR>
+	map <leader>db :e ~/books<CR>
+	map <leader>dd :e ~<CR>
 endif
 
-" Solarized toggle
-"call togglebg#map("<F5>")
+" RUN PROGRAMS ON FILE
+nmap <leader>r :cd %:h<CR>:!python3 %<CR>
+nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
+nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
+nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
+nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
+
+nmap <leader>f :!firefox %<CR>
+
+nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+"nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+
+" Show Table of Content
+"nmap <leader>t :Toch<CR>
+
+
+
+let g:user_emmet_leader_key=','
+
+
+""" Split Management
+map <leader>= <C-w>=
+"map <leader>m <C-w>_
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+set splitbelow
+set splitright
+
+"--------------------------------------------------"
+if has('win32')
+else
+
+""" Update vimwiki
+
+
+endif
+"--------------------------------------------------"
+
+""" KANBAN BOARD
+" Close board tab
+map <leader>bc :tabclose<CR>
+    
+if has('win32')
+" Main board: soon, doing, today, done 
+"map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
+else
+" Main board: soon, doing, today, done 
+map <leader>bb :tabnew ~/code/mdwiki/wiki/kanban-done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+
+" Full board: triage, later, soon, doing, today, done, archive
+"map <leader>bf :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR> 
+
+" Triage board: triage, later, soon, doing
+"map <leader>bt :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR> 
+
+" Archiving board: done, archive
+"map <leader>ba :tabnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR>
+
+endif
+"--------------------------------------------------"
+
+" RUN PROGRAM ON TEXT
+"map <leader>i :!i_view32.exe %:p:h<CR>
+
+" RUN PROGRAMS ON FILE
+"nmap <leader>r :w<CR>:py3 "%"<CR>
+"nmap <leader>h :w<CR>:!chrome.exe "%"<CR>
+"nmap <leader>n :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>jupyter nbconvert --to notebook --execute --inplace "%".ipynb<CR>
+"nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
+"nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
+
+"function! AdaptColorscheme()
+	"highlight clear CursorLine
+	"highlight Normal ctermbg=none
+	"highlight LineNr ctermbg=none
+	"highlight Folded ctermbg=none
+	"highlight NonText ctermbg=none
+	"highlight SpecialKey ctermbg=none
+	"highlight VertSplit ctermbg=none
+	"highlight SignColumn ctermbg=none
+"endfunction
+"autocmd ColorScheme * call AdaptColorscheme()
+"colorscheme jellyx
+"colorscheme triplejelly
+"colorscheme codeblocks_dark
+
+"--------------------------------------------------"
+" Random wallpapers by category on Gnome
+function! Wallpapers(dir, mode)
+python3 << EOF
+
+import os
+import vim
+import random
+from PIL import Image, ImageDraw
+
+path = '~/wallpapers/' + vim.eval("a:dir")
+mode = vim.eval("a:mode")
+
+if mode == 'tall':
+	panel_w = 1000
+	panel_h = 1000
+	img_wp = Image.new('RGB', (panel_w*2, panel_h), color='black')
+
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' or '.webp' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=2)
+
+	img_left = Image.open(random_choices[0])
+	img_left.thumbnail((panel_w, panel_h))
+	img_right = Image.open(random_choices[1])
+	img_right.thumbnail((panel_w, panel_h))
+
+	img_left_x0 = 0 + (panel_w - img_left.width)//2
+	img_left_y0 = 0 + (panel_h - img_left.height)//2
+
+	img_right_y0 = 0 + (panel_h - img_right.height)//2
+	img_right_x0 = panel_w + (panel_w - img_right.width)//2
+
+	img_wp.paste(img_left, (img_left_x0, img_left_y0))
+	img_wp.paste(img_right, (img_right_x0, img_right_y0))
+
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'wide':
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=1)
+
+	wp_fullpath = random_choices[0]
+	print(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'color':
+	img_wp = Image.new('RGB', (2000, 1000), color='black')
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+else:
+	pass
+
+EOF
+endfunction
+command! -nargs=0 Wallpapers call Wallpapers() 
+
+map <leader>ii :call Wallpapers('nw', 'color')<CR>
+
+map <leader>inw :call Wallpapers('nw', 'wide')<CR>
+map <leader>icw :call Wallpapers('cw', 'wide')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
+map <leader>ibw :call Wallpapers('bw', 'wide')<CR>
+map <leader>isw :call Wallpapers('sw', 'wide')<CR>
+map <leader>iww :call Wallpapers('ww', 'wide')<CR>
+
+map <leader>ix :call Wallpapers('x', 'tall')<CR>
+map <leader>ixa :call Wallpapers('ax', 'wide')<CR>
+map <leader>ixw :call Wallpapers('xw', 'wide')<CR>
+
+map <leader>ib :call Wallpapers('b', 'tall')<CR>
+map <leader>id :call Wallpapers('d', 'tall')<CR>
+map <leader>is :call Wallpapers('s', 'tall')<CR>
+map <leader>ir :call Wallpapers('r', 'tall')<CR>
+"map <leader>in :call Wallpapers('n')<CR>
+"map <leader>iw :call Wallpapers('w')<CR>
+"--------------------------------------------------"
+fun! ShowEquation()
+    "exec ":'<,'>! python3 -c \"import sys;print('rie-chan ' + sys.stdin.read())\""
+    "exec ":'<,'>! python3 ~/code/vim-equations/main.py"
+
+python3 << EOF
+
+import sys
+import os
+import string
+import vim
+
+#in_list = sys.stdin.read()
+in_list = vim.current.line
+
+#equation_in = in_list.rstrip()
+
+equation_in = in_list
+
+if equation_in[0] == '#':
+    equation_in = equation_in[2:]
+
+equation_in.replace("$$", "")
+
+equation_escaped = equation_in.translate(str.maketrans({"_":  r"\_",
+														" ":  r"\ ",
+														"=":  r"\=",
+														"^":  r"\^",
+														"(":  r"\(",
+														")":  r"\)",
+														"]":  r"\]",
+														"[":  r"\[",
+														"{":  r"\{",
+														"}":  r"\}",
+														"$":  r"\$",
+														"+":  r"\+",
+														"\\": r"\\",
+														}))
+
+# equation_escaped = equation_escaped.translate({ord(c): None for c in string.whitespace})
+print(equation_escaped)
+
+os.system('~/apps/l2p -i ' + equation_escaped + '  >/dev/null 2>&1')
+os.system('feh -x eqn.png  >/dev/null 2>&1')
+
+EOF
+endfun
+noremap <leader>e :call ShowEquation()<CR>
+
+"noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
+
+if has('win32')
+colorscheme jellyx
+else
+"colorscheme codedark
+"colorscheme wombat256dave
+"colorscheme molokaidark
+colorscheme earth
+endif
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+" Exit neovim terminal with ESC
+:tnoremap <Esc> <C-\><C-n>
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Colorschemes
+Plug 'vimwiki/vimwiki'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+Plug 'gcmt/taboo.vim'
+
+Plug 'skammer/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+
+Plug 'scrooloose/nerdcommenter' 
+Plug 'tpope/vim-fugitive' 
+Plug 'mattn/calendar-vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'lervag/vimtex'
+if has('win32')
+else
+"Plug 'xuhdev/vim-latex-live-preview'	"python required
+endif
+Plug 'mattn/emmet-vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+"Plug 'masukomi/vim-markdown-folding'
+
+"Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+"
+" Language support 
+Plug 'nikvdp/ejs-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'tpope/vim-jdaddy' "Json text objects
+Plug 'w0rp/ale'
+
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
+" Formater
+Plug 'Chiel92/vim-autoformat'
+
+
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+
+if has('win32')
+else
+" enable ncm2 for all buffers
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+endif
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+"NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
+Plug 'artur-shaik/vim-javacomplete2', {'for': ['java', 'jsp']}
+Plug 'gaalcaras/ncm-R'
+Plug 'ncm2/ncm2-cssomni'
+
+
+let g:vim_markdown_folding_disabled = 1
+
+let g:airline_section_a = ''
+let g:airline_section_y = ''
+
+set background=dark
+
+" Web browser
+Plug 'yuratomo/w3m.vim'
+
+"Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
+let g:jsx_ext_required = 0
+
+let g:ale_linters = {
+\	'javascript': [''],
+\}
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
+call plug#end()
+
+" Expand tabs only for python
+autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
+filetype plugin on
+
+let g:ale_fixers = {
+\  'javascript': ['eslint'],
+\}
+
+if has('win32')
+	set shell=powershell
+	set shellcmdflag=-command
+	"let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+else
+	let g:vimwiki_list = [{'path': '~/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+endif
+
+
+
+set noswapfile " FIx global paste
+inoremap <silent>  <S-Insert>  <C-R>+
+
+syntax on
+
+" Expand tabs only for python
+autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
+" Add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf8,prcs
+set autoindent
+set visualbell
+set nu
+
+" Jupytext comment color change for now
+":hi Comment guifg=#A6C22E
+
+
+"--------------------------------------------------"
+""" KEYBOARD SHORTCUTS """
+map <F3> ggVGg?
+
+let mapleader="\<Space>"
+"let mapleader = ","
+
+"
+
+"save current buffer
+nnoremap <leader>w :w<cr>
+
+"replace the word under cursor
+nnoremap <leader>c :%s/\<<c-r><c-w>\>//g<left><left>
+
+"clear highlighting
+map <leader>l :nohl<CR>
+
+" GO TO DIRECTORIES
+if has('win32')
+	"map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
+	"map <leader>dc :e D:/code<CR>
+	"map <leader>db :e D:/books<CR>
+	"map <leader>dd :e ~/<CR>
+else
+	"map <leader>di :e ~/.config/nvim/init.vim<CR>
+	map <leader>di :e ~/code/dot_files/init.vim<CR>
+	map <leader>dc :e ~/code<CR>
+	map <leader>db :e ~/books<CR>
+	map <leader>dd :e ~<CR>
+endif
+
+" RUN PROGRAMS ON FILE
+nmap <leader>r :cd %:h<CR>:!python3 %<CR>
+nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
+nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
+nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
+nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
+
+nmap <leader>f :!firefox %<CR>
+
+nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+"nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+
+" Show Table of Content
+"nmap <leader>t :Toch<CR>
+
+
+
+let g:user_emmet_leader_key=','
+
+
+""" Split Management
+map <leader>= <C-w>=
+"map <leader>m <C-w>_
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+set splitbelow
+set splitright
+
+"--------------------------------------------------"
+if has('win32')
+else
+
+""" Update vimwiki
+
+
+endif
+"--------------------------------------------------"
+
+""" KANBAN BOARD
+" Close board tab
+map <leader>bc :tabclose<CR>
+    
+if has('win32')
+" Main board: soon, doing, today, done 
+"map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
+else
+" Main board: soon, doing, today, done 
+map <leader>bb :tabnew ~/code/mdwiki/wiki/kanban-done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+
+" Full board: triage, later, soon, doing, today, done, archive
+"map <leader>bf :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR> 
+
+" Triage board: triage, later, soon, doing
+"map <leader>bt :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR> 
+
+" Archiving board: done, archive
+"map <leader>ba :tabnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR>
+
+endif
+"--------------------------------------------------"
+
+" RUN PROGRAM ON TEXT
+"map <leader>i :!i_view32.exe %:p:h<CR>
+
+" RUN PROGRAMS ON FILE
+"nmap <leader>r :w<CR>:py3 "%"<CR>
+"nmap <leader>h :w<CR>:!chrome.exe "%"<CR>
+"nmap <leader>n :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>jupyter nbconvert --to notebook --execute --inplace "%".ipynb<CR>
+"nmap <leader>m :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to html --execute "%".ipynb<CR>:!chrome.exe "%".html<CR>
+"nmap <leader>g :w<CR>:!jupytext --to ipynb "%" --update --output "%".ipynb <CR>:!jupyter nbconvert --to pdf --execute "%".ipynb<CR>:!SumatraPDF.exe "%".pdf<CR>
+
+"function! AdaptColorscheme()
+	"highlight clear CursorLine
+	"highlight Normal ctermbg=none
+	"highlight LineNr ctermbg=none
+	"highlight Folded ctermbg=none
+	"highlight NonText ctermbg=none
+	"highlight SpecialKey ctermbg=none
+	"highlight VertSplit ctermbg=none
+	"highlight SignColumn ctermbg=none
+"endfunction
+"autocmd ColorScheme * call AdaptColorscheme()
+"colorscheme jellyx
+"colorscheme triplejelly
+"colorscheme codeblocks_dark
+
+"--------------------------------------------------"
+" Random wallpapers by category on Gnome
+function! Wallpapers(dir, mode)
+python3 << EOF
+
+import os
+import vim
+import random
+from PIL import Image, ImageDraw
+
+path = '~/wallpapers/' + vim.eval("a:dir")
+mode = vim.eval("a:mode")
+
+if mode == 'tall':
+	panel_w = 1000
+	panel_h = 1000
+	img_wp = Image.new('RGB', (panel_w*2, panel_h), color='black')
+
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' or '.webp' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=2)
+
+	img_left = Image.open(random_choices[0])
+	img_left.thumbnail((panel_w, panel_h))
+	img_right = Image.open(random_choices[1])
+	img_right.thumbnail((panel_w, panel_h))
+
+	img_left_x0 = 0 + (panel_w - img_left.width)//2
+	img_left_y0 = 0 + (panel_h - img_left.height)//2
+
+	img_right_y0 = 0 + (panel_h - img_right.height)//2
+	img_right_x0 = panel_w + (panel_w - img_right.width)//2
+
+	img_wp.paste(img_left, (img_left_x0, img_left_y0))
+	img_wp.paste(img_right, (img_right_x0, img_right_y0))
+
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'wide':
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=1)
+
+	wp_fullpath = random_choices[0]
+	print(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'color':
+	img_wp = Image.new('RGB', (2000, 1000), color='black')
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+else:
+	pass
+
+EOF
+endfunction
+command! -nargs=0 Wallpapers call Wallpapers() 
+
+map <leader>ii :call Wallpapers('nw', 'color')<CR>
+
+map <leader>inw :call Wallpapers('nw', 'wide')<CR>
+map <leader>icw :call Wallpapers('cw', 'wide')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
+map <leader>ibw :call Wallpapers('bw', 'wide')<CR>
+map <leader>isw :call Wallpapers('sw', 'wide')<CR>
+map <leader>iww :call Wallpapers('ww', 'wide')<CR>
+
+map <leader>ix :call Wallpapers('x', 'tall')<CR>
+map <leader>ixa :call Wallpapers('ax', 'wide')<CR>
+map <leader>ixw :call Wallpapers('xw', 'wide')<CR>
+
+map <leader>ib :call Wallpapers('b', 'tall')<CR>
+map <leader>id :call Wallpapers('d', 'tall')<CR>
+map <leader>is :call Wallpapers('s', 'tall')<CR>
+map <leader>ir :call Wallpapers('r', 'tall')<CR>
+"map <leader>in :call Wallpapers('n')<CR>
+"map <leader>iw :call Wallpapers('w')<CR>
+"--------------------------------------------------"
+fun! ShowEquation()
+    "exec ":'<,'>! python3 -c \"import sys;print('rie-chan ' + sys.stdin.read())\""
+    "exec ":'<,'>! python3 ~/code/vim-equations/main.py"
+
+python3 << EOF
+
+import sys
+import os
+import string
+import vim
+
+#in_list = sys.stdin.read()
+in_list = vim.current.line
+
+#equation_in = in_list.rstrip()
+
+equation_in = in_list
+
+if equation_in[0] == '#':
+    equation_in = equation_in[2:]
+
+equation_in.replace("$$", "")
+
+equation_escaped = equation_in.translate(str.maketrans({"_":  r"\_",
+														" ":  r"\ ",
+														"=":  r"\=",
+														"^":  r"\^",
+														"(":  r"\(",
+														")":  r"\)",
+														"]":  r"\]",
+														"[":  r"\[",
+														"{":  r"\{",
+														"}":  r"\}",
+														"$":  r"\$",
+														"+":  r"\+",
+														"\\": r"\\",
+														}))
+
+# equation_escaped = equation_escaped.translate({ord(c): None for c in string.whitespace})
+print(equation_escaped)
+
+os.system('~/apps/l2p -i ' + equation_escaped + '  >/dev/null 2>&1')
+os.system('feh -x eqn.png  >/dev/null 2>&1')
+
+EOF
+endfun
+noremap <leader>e :call ShowEquation()<CR>
+
+"noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
+
+if has('win32')
+colorscheme jellyx
+else
+"colorscheme codedark
+"colorscheme wombat256dave
+"colorscheme molokaidark
+colorscheme earth
+endif
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+" Exit neovim terminal with ESC
+:tnoremap <Esc> <C-\><C-n>
+
