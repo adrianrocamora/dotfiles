@@ -14,7 +14,7 @@ Plug 'vimwiki/vimwiki'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'cakebaker/scss-syntax.vim'
 
-"Plug 'scrooloose/nerdcommenter' 
+Plug 'scrooloose/nerdcommenter' 
 "Plug 'tpope/vim-fugitive' 
 "Plug 'mattn/calendar-vim'
 "Plug 'rhysd/git-messenger.vim'
@@ -348,6 +348,9 @@ map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
 map <leader>ibw :call Wallpapers('bw', 'wide')<CR>
 map <leader>isw :call Wallpapers('sw', 'wide')<CR>
 map <leader>iww :call Wallpapers('ww', 'wide')<CR>
+
+map <leader>ia :call Wallpapers('a', 'tall')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
 
 map <leader>ix :call Wallpapers('x', 'tall')<CR>
 map <leader>ixa :call Wallpapers('ax', 'wide')<CR>
