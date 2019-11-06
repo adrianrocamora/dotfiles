@@ -15,9 +15,9 @@ Plug 'vimwiki/vimwiki'
 "Plug 'cakebaker/scss-syntax.vim'
 
 Plug 'scrooloose/nerdcommenter' 
-"Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive' 
 "Plug 'mattn/calendar-vim'
-"Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim'
 "Plug 'lervag/vimtex'
 "if has('win32')
 "else
