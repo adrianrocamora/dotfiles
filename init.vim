@@ -176,6 +176,9 @@ else
 	map <leader>dd :e ~<CR>
 endif
 
+" Word counter
+nnoremap <space>:!wc -w %<CR>
+
 " FUGITIVE VIM BINDINGS
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
