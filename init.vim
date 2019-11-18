@@ -177,7 +177,7 @@ else
 endif
 
 " Word counter
-nnoremap <space>:!wc -w %<CR>
+nnoremap <space>wc :!wc -w %<CR>
 
 " FUGITIVE VIM BINDINGS
 nnoremap <space>ga :Git add %:p<CR><CR>

@@ -97,3 +97,30 @@ noremap <leader>0 :tablast<cr>
 
 nnoremap <leader>gg :w<CR>
 set nonumber
+
+" Word counter
+nnoremap <space>wc :!wc -w %<CR>
+
+" FUGITIVE VIM BINDINGS
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gg :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gp :Git push<CR>
+nnoremap <space>gps :Dispatch! git push<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>
+
+" RUN PROGRAMS ON FILE
+nmap <leader>r :cd %:h<CR>:!python3 %<CR>
+nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
+nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
+nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
