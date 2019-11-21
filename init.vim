@@ -175,16 +175,16 @@ endif
 nnoremap <space>wc :!wc -w %<CR>
 
 " FUGITIVE VIM BINDINGS
-"nnoremap <space>ga :Git add %:p<CR>
 nnoremap <space>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
 nnoremap <space>gps :Git push<CR>
-nnoremap <space>gl :!git lg<CR>
+nnoremap <space>gl :cd %:h<CR>:!git log --oneline --graph<CR>
 
 nnoremap <space>ga :Git add %<CR>
 nnoremap <space>gss :Gstatus<CR>
 nnoremap <space>gcc :Gcommit -v -q<CR>
 nnoremap <space>gcm :Gcommit -v -q -m "Updates"<CR>
 nnoremap <space>gd :Gdiff<CR>
+"nnoremap <space>gaa :Git add %:p<CR>
 "nnoremap <space>ge :Gedit<CR>
 "nnoremap <space>gr :Gread<CR>
 "nnoremap <space>gw :Gwrite<CR><CR>
