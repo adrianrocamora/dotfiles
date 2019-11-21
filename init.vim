@@ -2,33 +2,31 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+Plug 'scrooloose/nerdcommenter' 
+Plug 'tpope/vim-fugitive' 
+Plug 'rhysd/git-messenger.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'yuratomo/w3m.vim'
 
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
-
 "Plug 'gcmt/taboo.vim'
-
 "Plug 'skammer/vim-css-color'
 "Plug 'hail2u/vim-css3-syntax'
 "Plug 'groenewege/vim-less'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'cakebaker/scss-syntax.vim'
-
-Plug 'scrooloose/nerdcommenter' 
-Plug 'tpope/vim-fugitive' 
-"Plug 'mattn/calendar-vim'
-Plug 'rhysd/git-messenger.vim'
 "Plug 'lervag/vimtex'
 "if has('win32')
 "else
 ""Plug 'xuhdev/vim-latex-live-preview'	"python required
 "endif
-"Plug 'mattn/emmet-vim'
-"Plug 'flazz/vim-colorschemes'
-"Plug 'vim-airline/vim-airline'
 "Plug 'masukomi/vim-markdown-folding'
-
-"Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
 "
 " Language support 
 "Plug 'nikvdp/ejs-syntax'
@@ -49,16 +47,16 @@ Plug 'rhysd/git-messenger.vim'
 "Plug 'ncm2/ncm2'
 "Plug 'roxma/nvim-yarp'
 
-if has('win32')
-else
-" enable ncm2 for all buffers
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-endif
+"if has('win32')
+"else
+"" enable ncm2 for all buffers
+""autocmd BufEnter * call ncm2#enable_for_buffer()
+"endif
 
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+"" IMPORTANT: :help Ncm2PopupOpen for more information
+"set completeopt=noinsert,menuone,noselect
 
-"NOTE: you need to install completion sources to get completions. Check
+""NOTE: you need to install completion sources to get completions. Check
 " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 "Plug 'ncm2/ncm2-bufword'
 "Plug 'ncm2/ncm2-path'
@@ -73,24 +71,21 @@ set completeopt=noinsert,menuone,noselect
 
 
 "let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_folding_disabled = 0
+"let g:vim_markdown_folding_disabled = 0
 
 let g:airline_section_a = ''
 let g:airline_section_y = ''
 
 set background=dark
 
-" Web browser
-"Plug 'yuratomo/w3m.vim'
 
 "Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
-let g:jsx_ext_required = 0
+"let g:jsx_ext_required = 0
 
-let g:ale_linters = {
-\	'javascript': [''],
-\}
+"let g:ale_linters = {
+"\	'javascript': [''],
+"\}
 
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 
 call plug#end()
@@ -180,22 +175,27 @@ endif
 nnoremap <space>wc :!wc -w %<CR>
 
 " FUGITIVE VIM BINDINGS
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
+"nnoremap <space>ga :Git add %:p<CR>
+nnoremap <space>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
+nnoremap <space>gps :Git push<CR>
+nnoremap <space>gl :!git lg<CR>
+
+nnoremap <space>ga :Git add %<CR>
+nnoremap <space>gss :Gstatus<CR>
+nnoremap <space>gcc :Gcommit -v -q<CR>
+nnoremap <space>gcm :Gcommit -v -q -m "Updates"<CR>
 nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>ge :Gedit<CR>
-nnoremap <space>gr :Gread<CR>
-nnoremap <space>gw :Gwrite<CR><CR>
-nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <space>gg :Ggrep<Space>
-nnoremap <space>gm :Gmove<Space>
-nnoremap <space>gb :Git branch<Space>
-nnoremap <space>go :Git checkout<Space>
-nnoremap <space>gp :Git push<CR>
-nnoremap <space>gps :Dispatch! git push<CR>
-nnoremap <space>gpl :Dispatch! git pull<CR>
+"nnoremap <space>ge :Gedit<CR>
+"nnoremap <space>gr :Gread<CR>
+"nnoremap <space>gw :Gwrite<CR><CR>
+"nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+"nnoremap <space>gg :Ggrep<Space>
+"nnoremap <space>gm :Gmove<Space>
+"nnoremap <space>gb :Git branch<Space>
+"nnoremap <space>go :Git checkout<Space>
+"nnoremap <space>gps :Dispatch! git push<CR>
+"nnoremap <space>gpl :Dispatch! git pull<CR>
+"nnoremap <space>gc :Gcommit -v -q<CR>
 
 " RUN PROGRAMS ON FILE
 nmap <leader>r :cd %:h<CR>:!python3 %<CR>
