@@ -113,4 +113,15 @@ export PATH=/home/rocamora/npmglobal/bin:$PATH
 
 export GRADLE_USER_HOME=/home/rocamora/.gradle
 
-alias neofetch="neofetch --ascii_distro mac"
+#alias neofetch="neofetch --ascii_distro mac"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias vd='vim ~/code/mdwiki/daily.md'
+alias vw='vim ~/code/mdwiki/wishlist.md'
+alias vk='vim ~/code/mdwiki/kanban.md'
+alias gac='git add . ; git commit -m Updates'
+alias gss='git status'
+alias gps='git push'
+alias gpl='git pull'
