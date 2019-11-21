@@ -113,6 +113,8 @@ export PATH=/home/rocamora/npmglobal/bin:$PATH
 
 export GRADLE_USER_HOME=/home/rocamora/.gradle
 
+export PATH=$PATH:~/code/other/dasht/bin
+
 #alias neofetch="neofetch --ascii_distro mac"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -125,3 +127,4 @@ alias gac='git add . ; git commit -m Updates'
 alias gss='git status'
 alias gps='git push'
 alias gpl='git pull'
+
