@@ -12,6 +12,7 @@ Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
 Plug 'mattn/emmet-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'yuratomo/w3m.vim'
+Plug 'sunaku/vim-dasht'
 
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
