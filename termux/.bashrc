@@ -13,4 +13,4 @@ alias gss='git status'
 alias gps='git push'
 alias gpl='git pull'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
-toilet Veidt
+figlet Veidt
