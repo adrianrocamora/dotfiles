@@ -1,0 +1,4 @@
+--no-mtime
+--extract-audio
+--audio-format mp3 
+-o /data/data/com.termux/files/home/storage/shared/ytdl/%(title)s.%(ext)s

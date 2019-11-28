@@ -78,7 +78,8 @@ map <leader>bc :tabclose<CR>
 "colorscheme codedark
 "colorscheme wombat256dave
 "colorscheme molokaidark
-colorscheme earth
+"colorscheme earth
+colorscheme wombat256mod
 
 " Go to tab by number
 noremap <leader>1 1gt
