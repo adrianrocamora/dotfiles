@@ -14,3 +14,5 @@ alias gps='git push'
 alias gpl='git pull'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
 figlet Veidt
+alias ccm='cd ~/code/mdwiki'
+alias ccd='cd ~/code/dot_files'
