@@ -109,6 +109,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 setxkbmap -option caps:swapescape
+
+# npm config set prefixe /home/rocamora/.npmglobal
 export PATH=/home/rocamora/.npmglobal/bin:$PATH
 
 export GRADLE_USER_HOME=/home/rocamora/.gradle
