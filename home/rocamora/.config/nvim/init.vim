@@ -338,4 +338,5 @@ map <leader>id :call WallpapersD()<CR>
 set clipboard=unnamed
 
 
+tnoremap <Esc> <C-\><C-n>
 
