@@ -2,55 +2,94 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
 Plug 'scrooloose/nerdcommenter' 
 Plug 'tpope/vim-fugitive' 
-Plug 'mattn/calendar-vim'
 Plug 'rhysd/git-messenger.vim'
-Plug 'lervag/vimtex'
-"Plug 'xuhdev/vim-latex-live-preview'	"python required
-Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
+Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'yuratomo/w3m.vim'
+Plug 'sunaku/vim-dasht'
 
-"Plug 'goerz/jupytext.vim' 		"Jupytext plugin to edit ipynb files as python files
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'gcmt/taboo.vim'
+"Plug 'skammer/vim-css-color'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'groenewege/vim-less'
+"Plug 'jelera/vim-javascript-syntax'
+"Plug 'cakebaker/scss-syntax.vim'
+"Plug 'lervag/vimtex'
+"if has('win32')
+"else
+""Plug 'xuhdev/vim-latex-live-preview'	"python required
+"endif
+"Plug 'masukomi/vim-markdown-folding'
 "
 " Language support 
-Plug 'nikvdp/ejs-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'tpope/vim-jdaddy' "Json text objects
-Plug 'w0rp/ale'
+"Plug 'nikvdp/ejs-syntax'
+"Plug 'pangloss/vim-javascript'
+"Plug 'mxw/vim-jsx'
+"Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'jelera/vim-javascript-syntax'
+"Plug 'tpope/vim-jdaddy' "Json text objects
+"Plug 'w0rp/ale'
+
+"Plug 'pangloss/vim-javascript'
+"Plug 'mxw/vim-jsx'
 
 " Formater
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
+
+
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+
+"if has('win32')
+"else
+"" enable ncm2 for all buffers
+""autocmd BufEnter * call ncm2#enable_for_buffer()
+"endif
+
+"" IMPORTANT: :help Ncm2PopupOpen for more information
+"set completeopt=noinsert,menuone,noselect
+
+""NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+"Plug 'ncm2/ncm2-bufword'
+"Plug 'ncm2/ncm2-path'
+
+"Plug 'ncm2/ncm2-jedi'
+"Plug 'ncm2/ncm2-pyclang'
+"Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+"Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
+"Plug 'artur-shaik/vim-javacomplete2', {'for': ['java', 'jsp']}
+"Plug 'gaalcaras/ncm-R'
+"Plug 'ncm2/ncm2-cssomni'
+
+
+"let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_folding_disabled = 0
+
+let g:airline_section_a = ''
+let g:airline_section_y = ''
 
 set background=dark
 
-" Web browser
-Plug 'yuratomo/w3m.vim'
 
 "Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
-let g:jsx_ext_required = 0
+"let g:jsx_ext_required = 0
 
-let g:ale_linters = {
-\	'javascript': [''],
-\}
+"let g:ale_linters = {
+"\	'javascript': [''],
+"\}
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 
 call plug#end()
-
-"save current buffer
-nnoremap <leader>t :tabe<cr>:te<cr>
-
-"save current buffer
-nnoremap <leader>w :w<cr>
-
-"replace the word under cursor
-nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
@@ -65,8 +104,9 @@ let g:ale_fixers = {
 if has('win32')
 	set shell=powershell
 	set shellcmdflag=-command
+	"let g:vimwiki_list = [{'path': 'D:/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 else
-	let g:vimwiki_list = [{'path': '/media/datanix/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '~/code/mdwiki/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 endif
 
 
@@ -107,36 +147,88 @@ map <F3> ggVGg?
 let mapleader="\<Space>"
 "let mapleader = ","
 
+"
+
+"save current buffer
+nnoremap <leader>w :w<cr>
+
+"replace the word under cursor
+nnoremap <leader>c :%s/\<<c-r><c-w>\>//g<left><left>
+
+"clear highlighting
+map <leader>l :nohl<CR>
+
+" GO TO DIRECTORIES
 if has('win32')
+	"map <leader>di :e ~/AppData/Local/nvim/init.vim<CR>
+	"map <leader>dc :e D:/code<CR>
+	"map <leader>db :e D:/books<CR>
+	"map <leader>dd :e ~/<CR>
 else
-	" GO TO DIRECTORIES
-	map <leader>di :e /home/rocamora/.config/nvim/init.vim<CR>
-	map <leader>dc :e /media/datanix/code<CR>
-	map <leader>db :e /media/datanix/books<CR>
-	map <leader>dd :e /media/datanix<CR>
-	map <leader>dr :e /home/rocamora<CR>
+	"map <leader>di :e ~/.config/nvim/init.vim<CR>
+	map <leader>di :e ~/code/dot_files/init.vim<CR>
+	map <leader>dc :e ~/code<CR>
+	map <leader>db :e ~/books<CR>
+	map <leader>dd :e ~<CR>
 endif
 
+" Word counter
+nnoremap <space>wc :!wc -w %<CR>
+
+" FUGITIVE VIM BINDINGS
+nnoremap <space>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
+nnoremap <space>gps :Git push<CR>
+nnoremap <space>gl :cd %:h<CR>:!git log --oneline --graph<CR>
+
+nnoremap <space>ga :Git add %<CR>
+nnoremap <space>gss :Gstatus<CR>
+nnoremap <space>gcc :Gcommit -v -q<CR>
+nnoremap <space>gcm :Gcommit -v -q -m "Updates"<CR>
+nnoremap <space>gd :Gdiff<CR>
+"nnoremap <space>gaa :Git add %:p<CR>
+"nnoremap <space>ge :Gedit<CR>
+"nnoremap <space>gr :Gread<CR>
+"nnoremap <space>gw :Gwrite<CR><CR>
+"nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+"nnoremap <space>gg :Ggrep<Space>
+"nnoremap <space>gm :Gmove<Space>
+"nnoremap <space>gb :Git branch<Space>
+"nnoremap <space>go :Git checkout<Space>
+"nnoremap <space>gps :Dispatch! git push<CR>
+"nnoremap <space>gpl :Dispatch! git pull<CR>
+"nnoremap <space>gc :Gcommit -v -q<CR>
+
 " RUN PROGRAMS ON FILE
-nmap <leader>r :!python3 % <CR>
+nmap <leader>r :cd %:h<CR>:!python3 %<CR>
+nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
+nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
+nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
 nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox %<CR>
+
+nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+"nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+
+
+" Show Table of Content
+"nmap <leader>t :Toch<CR>
 
 
 
 let g:user_emmet_leader_key=','
 
-map <leader>l :nohl<CR>
 
 """ Split Management
-map <leader>n <C-w>=
-map <leader>m <C-w>_
+map <leader>= <C-w>=
+"map <leader>m <C-w>_
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 
 set splitbelow
 set splitright
@@ -151,68 +243,30 @@ else
 endif
 "--------------------------------------------------"
 
-    
-if has('win32')
-else
-
-    
 """ KANBAN BOARD
 " Close board tab
 map <leader>bc :tabclose<CR>
-
+    
+if has('win32')
 " Main board: soon, doing, today, done 
-map <leader>bb :tabnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>
+"map <leader>bb :tabnew D:/mdwiki/wiki/index.md<CR>:vnew D:/mdwiki/wiki/kanban-done.md<CR>
+else
+" Main board: soon, doing, today, done 
+map <leader>bb :tabnew ~/code/mdwiki/wiki/kanban-done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
+"map <leader>bb :tabnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>
 
 " Full board: triage, later, soon, doing, today, done, archive
-map <leader>bf :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/today.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR> 
+"map <leader>bf :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/today.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR> 
 
 " Triage board: triage, later, soon, doing
-map <leader>bt :tabnew /media/datanix/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/later.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/doing.md<CR> 
+"map <leader>bt :tabnew /home/rocamora/code/mdwiki/wiki/kanban/triage.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/later.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/soon.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/doing.md<CR> 
 
 " Archiving board: done, archive
-map <leader>ba :tabnew /media/datanix/code/mdwiki/wiki/kanban/done.md<CR>:vnew /media/datanix/code/mdwiki/wiki/kanban/archive.md<CR>
-
-endif
-
-"--------------------------------------------------"
-if has('win32')
-else
-
-" We need to automate this :) maybe with a 'next' command
-
-map <leader>id1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva01.jpg<CR><CR>
-map <leader>id2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva02.jpg<CR><CR>
-map <leader>id3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva03.jpg<CR><CR>
-map <leader>id4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva04.jpg<CR><CR>
-map <leader>id5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva05.jpg<CR><CR>
-map <leader>id6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva06.jpg<CR><CR>
-map <leader>id7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva07.jpg<CR><CR>
-map <leader>id8 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva08.jpg<CR><CR>
-map <leader>id9 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva09.jpg<CR><CR>
-map <leader>id10 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva10.png<CR><CR>
-map <leader>id11 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva11.jpg<CR><CR>
-map <leader>id12 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva12.jpg<CR><CR>
-map <leader>id13 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva13.jpg<CR><CR>
-map <leader>id14 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva14.jpg<CR><CR>
-map <leader>id15 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/dva15.jpg<CR><CR>
-
-map <leader>ib1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh01.jpg<CR><CR>
-map <leader>ib2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh02.jpg<CR><CR>
-map <leader>ib3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh03.jpg<CR><CR>
-map <leader>ib4 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh04.png<CR><CR>
-map <leader>ib5 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh05.jpg<CR><CR>
-map <leader>ib6 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh06.jpg<CR><CR>
-map <leader>ib7 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/bnh07.png<CR><CR>
-
-map <leader>ix1 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x001.png<CR><CR>
-map <leader>ix2 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x002.jpg<CR><CR>
-map <leader>ix3 :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/x003.jpdeg<CR><CR>
-
-map <leader>iw :!gsettings set org.gnome.desktop.background picture-uri /media/datanix/wallpapers/ww00.jpg<CR><CR>
+"map <leader>ba :tabnew /home/rocamora/code/mdwiki/wiki/kanban/done.md<CR>:vnew /home/rocamora/code/mdwiki/wiki/kanban/archive.md<CR>
 
 endif
 "--------------------------------------------------"
-"
 
 " RUN PROGRAM ON TEXT
 "map <leader>i :!i_view32.exe %:p:h<CR>
@@ -239,104 +293,168 @@ endif
 "colorscheme triplejelly
 "colorscheme codeblocks_dark
 
-
-function! Wallpapers()
+"--------------------------------------------------"
+" Random wallpapers by category on Gnome
+function! Wallpapers(dir, mode)
 python3 << EOF
+
 import os
+import vim
 import random
-path = '/media/datanix/wallpapers/w'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-print(random_choice)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+from PIL import Image, ImageDraw
+
+path = '~/wallpapers/' + vim.eval("a:dir")
+mode = vim.eval("a:mode")
+
+if mode == 'tall':
+	panel_w = 1000
+	panel_h = 1000
+	img_wp = Image.new('RGB', (panel_w*2, panel_h), color='black')
+
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' or '.webp' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=2)
+
+	img_left = Image.open(random_choices[0])
+	img_left.thumbnail((panel_w, panel_h))
+	img_right = Image.open(random_choices[1])
+	img_right.thumbnail((panel_w, panel_h))
+
+	img_left_x0 = 0 + (panel_w - img_left.width)//2
+	img_left_y0 = 0 + (panel_h - img_left.height)//2
+
+	img_right_y0 = 0 + (panel_h - img_right.height)//2
+	img_right_x0 = panel_w + (panel_w - img_right.width)//2
+
+	img_wp.paste(img_left, (img_left_x0, img_left_y0))
+	img_wp.paste(img_right, (img_right_x0, img_right_y0))
+
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'wide':
+	files = []
+	# r=root, d=directories, f = files
+	for r, d, f in os.walk(path):
+		for file in f:
+			if '.jpg' or '.png' in file:
+				files.append(os.path.join(r, file))
+	random_choices = random.sample(files, k=1)
+
+	wp_fullpath = random_choices[0]
+	print(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+
+elif mode == 'color':
+	img_wp = Image.new('RGB', (2000, 1000), color='black')
+	wp_fullpath = '~/wallpapers/wp.png'
+	img_wp.save(wp_fullpath)
+	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+else:
+	pass
+
 EOF
 endfunction
 command! -nargs=0 Wallpapers call Wallpapers() 
-map <leader>ii :call Wallpapers()<CR>
 
-function! WallpapersS()
+map <leader>ii :call Wallpapers('nw', 'color')<CR>
+
+map <leader>inw :call Wallpapers('nw', 'wide')<CR>
+map <leader>icw :call Wallpapers('cw', 'wide')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
+map <leader>ibw :call Wallpapers('bw', 'wide')<CR>
+map <leader>isw :call Wallpapers('sw', 'wide')<CR>
+map <leader>iww :call Wallpapers('ww', 'wide')<CR>
+
+map <leader>ia :call Wallpapers('a', 'tall')<CR>
+map <leader>iaw :call Wallpapers('aw', 'wide')<CR>
+
+map <leader>ix :call Wallpapers('x', 'tall')<CR>
+map <leader>ixa :call Wallpapers('ax', 'wide')<CR>
+map <leader>ixw :call Wallpapers('xw', 'wide')<CR>
+
+map <leader>ib :call Wallpapers('b', 'tall')<CR>
+map <leader>id :call Wallpapers('d', 'tall')<CR>
+map <leader>is :call Wallpapers('s', 'tall')<CR>
+map <leader>ir :call Wallpapers('r', 'tall')<CR>
+"map <leader>in :call Wallpapers('n')<CR>
+"map <leader>iw :call Wallpapers('w')<CR>
+"--------------------------------------------------"
+fun! ShowEquation()
+    "exec ":'<,'>! python3 -c \"import sys;print('rie-chan ' + sys.stdin.read())\""
+    "exec ":'<,'>! python3 ~/code/vim-equations/main.py"
+
 python3 << EOF
+
+import sys
 import os
-import random
-path = '/media/datanix/wallpapers/s'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-print(random_choice)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
+import string
+import vim
+
+#in_list = sys.stdin.read()
+in_list = vim.current.line
+
+#equation_in = in_list.rstrip()
+
+equation_in = in_list
+
+if equation_in[0] == '#':
+    equation_in = equation_in[2:]
+
+equation_in.replace("$$", "")
+
+equation_escaped = equation_in.translate(str.maketrans({"_":  r"\_",
+														" ":  r"\ ",
+														"=":  r"\=",
+														"^":  r"\^",
+														"(":  r"\(",
+														")":  r"\)",
+														"]":  r"\]",
+														"[":  r"\[",
+														"{":  r"\{",
+														"}":  r"\}",
+														"$":  r"\$",
+														"+":  r"\+",
+														"\\": r"\\",
+														}))
+
+# equation_escaped = equation_escaped.translate({ord(c): None for c in string.whitespace})
+print(equation_escaped)
+
+os.system('~/apps/l2p -i ' + equation_escaped + '  >/dev/null 2>&1')
+os.system('feh -x eqn.png  >/dev/null 2>&1')
+
 EOF
-endfunction
-command! -nargs=0 WallpapersS call WallpapersS() 
-map <leader>is :call WallpapersS()<CR>
+endfun
+noremap <leader>e :call ShowEquation()<CR>
 
-function! WallpapersN()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/n'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice = random.choice(files)
-print(random_choice)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 WallpapersN call WallpapersN() 
-map <leader>in :call WallpapersN()<CR>
+"noremap <leader>t :echo 'Current time is ' . strftime('%c')<CR>
 
-function! WallpapersX()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/x'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice= random.choice(files)
-print(random_choice)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 WallpapersX call WallpapersX() 
-map <leader>ix :call WallpapersX()<CR>
+if has('win32')
+colorscheme jellyx
+else
+"colorscheme codedark
+"colorscheme wombat256dave
+"colorscheme molokaidark
+"colorscheme earth
+endif
 
-function! WallpapersD()
-python3 << EOF
-import os
-import random
-path = '/media/datanix/wallpapers/d'
-files = []
-# r=root, d=directories, f = files
-for r, d, f in os.walk(path):
-    for file in f:
-        if '.jpg' or '.png' or '.jpeg' in file:
-            files.append(os.path.join(r, file))
-random_choice= random.choice(files)
-print(random_choice)
-os.system('gsettings set org.gnome.desktop.background picture-uri '+random_choice)
-EOF
-endfunction
-command! -nargs=0 WallpapersD call WallpapersD() 
-map <leader>id :call WallpapersD()<CR>
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
-set clipboard=unnamed
-
-
-tnoremap <Esc> <C-\><C-n>
-
+" Exit neovim terminal with ESC
+:tnoremap <Esc> <C-\><C-n>
