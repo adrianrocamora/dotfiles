@@ -137,4 +137,4 @@ alias prs="~/code/dot_files/home/rocamora/play_random_song.sh"
 
 alias ccm="cd ~/code/mdwiki/wiki"
 alias ccd="cd ~/code/dot_files"
-alias cck="cd ~/code/kng""
+alias cck="cd ~/code/kng"
