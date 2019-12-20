@@ -133,7 +133,7 @@ alias gps='git push'
 alias gpl='git pull'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
 
-alias prs="~/code/dot_files/home/rocamora/play_random_song.sh"
+alias prs="~/code/dot_files/home/rocamora/util/play_random_song.sh"
 
 alias ccm="cd ~/code/mdwiki/wiki"
 alias ccd="cd ~/code/dot_files"
