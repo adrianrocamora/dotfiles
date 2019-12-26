@@ -136,5 +136,5 @@ alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%
 alias prs="~/code/dot_files/home/rocamora/util/play_random_song.sh"
 
 alias ccm="cd ~/code/mdwiki/wiki"
-alias ccd="cd ~/code/dot_files"
+alias ccd="cd ~/code/dotfiles"
 alias cck="cd ~/code/kng"
