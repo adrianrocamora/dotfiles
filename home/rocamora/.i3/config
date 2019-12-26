@@ -418,3 +418,8 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# Window transparency adjustment (and alias to restart compton)
+bindsym $mod+Mod1+z exec transset-df -a --min 0.25 --dec 0.25
+bindsym $mod+Mod1+x exec transset-df -a --inc 0.25
+bindsym $mod+Mod1+c exec --no-startup-id compton -b
