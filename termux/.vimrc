@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-
 Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdcommenter' 
 Plug 'tpope/vim-fugitive' 
@@ -97,6 +96,8 @@ noremap <leader>0 :tablast<cr>
 :tnoremap <Esc> <C-\><C-n>
 
 nnoremap <leader>gg :w<CR>
+nnoremap <leader>qq :q<CR>
+nnoremap <leader>wq :wq<CR>
 set nonumber
 
 " Word counter
