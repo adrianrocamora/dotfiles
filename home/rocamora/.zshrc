@@ -134,7 +134,14 @@ alias gpl='git pull'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
 
 alias prs="~/code/dotfiles/home/rocamora/util/play_random_song.sh"
+alias prs="~/code/dotfiles/home/rocamora/util/download_youtube_audio.sh"
 
-alias ccm="cd ~/code/mdwiki/wiki"
+alias ccm="cd ~/code/mdwiki"
+alias ccmi="cd ~/code/mia"
 alias ccd="cd ~/code/dotfiles"
 alias cck="cd ~/code/kng"
+alias cca="cd ~/code/adrianrocamora.github.io"
+alias ccbf="cd ~/code/biofist"
+alias ccbl="cd ~/code/blog"
+alias ccw="cd ~/code/writing"
+
