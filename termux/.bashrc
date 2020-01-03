@@ -15,4 +15,6 @@ alias ccm='cd ~/code/mdwiki'
 alias ccd='cd ~/code/dotfiles'
 alias cck='cd ~/code/kng'
 
+alias prs='bash ~/code/dotfiles/termux/play_random_song.sh'
+
 figlet D\ Va
