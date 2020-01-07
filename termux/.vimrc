@@ -105,11 +105,13 @@ nnoremap <space>wc :!wc -w %<CR>
 
 " FUGITIVE VIM BINDINGS
 nnoremap <space>gac :Git add %:p<CR>:Gcommit -m "Automated commit"<CR>
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gss :Gstatus<CR>
 nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>gps :Git push<CR>
+nnoremap <space>gpl :Git pull<CR>
+"nnoremap <space>ga :Git add %:p<CR><CR>
+"nnoremap <space>gc :Gcommit -v -q<CR>
+"nnoremap <space>gt :Gcommit -v -q %:p<CR>
 "nnoremap <space>ge :Gedit<CR>
 ""nnoremap <space>gr :Gread<CR>
 "nnoremap <space>gw :Gwrite<CR><CR>
@@ -118,7 +120,6 @@ nnoremap <space>gd :Gdiff<CR>
 "nnoremap <space>gm :Gmove<Space>
 "nnoremap <space>gb :Git branch<Space>
 "nnoremap <space>go :Git checkout<Space>
-nnoremap <space>gp :Git push<CR>
 "nnoremap <space>gps :Dispatch! git push<CR>
 "nnoremap <space>gpl :Dispatch! git pull<CR>
 
