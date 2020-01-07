@@ -104,6 +104,7 @@ set nonumber
 nnoremap <space>wc :!wc -w %<CR>
 
 " FUGITIVE VIM BINDINGS
+nnoremap <space>gac :Git add %:p<CR>:Gcommit -m "Automated commit"<CR>
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>
