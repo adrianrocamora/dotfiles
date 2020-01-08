@@ -145,3 +145,5 @@ alias ccbf="cd ~/code/biofist"
 alias ccbl="cd ~/code/blog"
 alias ccw="cd ~/code/writing"
 
+alias kidiff="kitty +kitten diff "
+
