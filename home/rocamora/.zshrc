@@ -147,3 +147,10 @@ alias ccw="cd ~/code/writing"
 
 alias kidiff="kitty +kitten diff "
 
+alias dokidoki="steam steam://rungameid/698780"
+alias dontstarve="steam steam://rungameid/219740"
+alias ftl="steam steam://rungameid/212680"
+alias steamworlddig="steam steam://rungameid/252410"
+alias supermeatboy="steam steam://rungameid/40800"
+alias superbrothers="steam steam://rungameid/204060"
+alias mhrd="steam steam://rungameid/576030"
