@@ -132,6 +132,7 @@ alias gss='git status'
 alias gps='git push'
 alias gpl='git pull'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
+alias gcm="git add -u; git commit -m "
 
 alias prs="~/code/dotfiles/home/rocamora/util/play_random_song.sh"
 alias dya="~/code/dotfiles/home/rocamora/util/download_youtube_audio.sh"
