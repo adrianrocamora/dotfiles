@@ -63,4 +63,7 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
+feh --bg-fill ~/code/wallpapers/toga03.jpg
+picom &
+unclutter &
 exec $(get_session)
