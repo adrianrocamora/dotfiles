@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
+Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'scrooloose/nerdcommenter' 
