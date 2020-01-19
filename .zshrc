@@ -161,5 +161,3 @@ alias stmbraid="steam steam://rungameid/26800"
 alias stmcrypt="steam steam://rungameid/247080"
 alias stmevilgenius="steam steam://rungameid/3720"
 alias stmduet="steam steam://rungameid/292600"
-
-alias tclock="/home/rocamora/code/other/tty-clock/tty-clock"
