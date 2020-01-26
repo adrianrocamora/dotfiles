@@ -94,7 +94,7 @@ call plug#end()
 
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType python set tabstop=2|set shiftwidth=2|set expandtab
 
 filetype plugin on
 
@@ -119,7 +119,7 @@ syntax on
 
 " Expand tabs only for python
 autocmd FileType * set tabstop=4|set shiftwidth=4|set noexpandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType python set tabstop=2|set shiftwidth=2|set expandtab
 
 " Add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
@@ -304,7 +304,7 @@ import vim
 import random
 from PIL import Image, ImageDraw
 
-path = '~/wallpapers/' + vim.eval("a:dir")
+path = '~/docs/wallpapers/' + vim.eval("a:dir")
 mode = vim.eval("a:mode")
 
 if mode == 'tall':
@@ -334,9 +334,10 @@ if mode == 'tall':
 	img_wp.paste(img_left, (img_left_x0, img_left_y0))
 	img_wp.paste(img_right, (img_right_x0, img_right_y0))
 
-	wp_fullpath = '~/wallpapers/wp.png'
+	wp_fullpath = '~/docs/wallpapers/wp.png'
 	img_wp.save(wp_fullpath)
-	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	os.system('feh --bg-fill ' + wp_fullpath)
 
 elif mode == 'wide':
 	files = []
@@ -349,13 +350,15 @@ elif mode == 'wide':
 
 	wp_fullpath = random_choices[0]
 	print(wp_fullpath)
-	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	os.system('feh --bg-fill ' + wp_fullpath)
 
 elif mode == 'color':
 	img_wp = Image.new('RGB', (2000, 1000), color='black')
 	wp_fullpath = '~/wallpapers/wp.png'
 	img_wp.save(wp_fullpath)
-	os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
+	os.system('feh --bg-fill ' + wp_fullpath)
 else:
 	pass
 
@@ -459,3 +462,8 @@ noremap <leader>0 :tablast<cr>
 
 " Exit neovim terminal with ESC
 :tnoremap <Esc> <C-\><C-n>
+
+"set clipboard=unnamed
+"set clipboard=unnamedplus
+"set clipboard^=unnamedplus
+set clipboard^=unnamed
