@@ -146,9 +146,6 @@ set nu
 map <F3> ggVGg?
 
 let mapleader="\<Space>"
-"let mapleader = ","
-
-"
 
 "save current buffer
 nnoremap <leader>w :w<cr>
@@ -175,6 +172,7 @@ endif
 
 " Word counter
 nnoremap <space>wc :!wc -w %<CR>
+nnoremap <space>go :Goyo<CR>
 
 " FUGITIVE VIM BINDINGS
 nnoremap <space>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
