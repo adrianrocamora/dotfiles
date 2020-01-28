@@ -63,7 +63,9 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-feh --bg-fill ~/code/wallpapers/toga03.jpg
+#feh --bg-fill ~/code/wallpapers/toga03.jpg
+#feh --bg-tile ~/code/wallpapers/skdva03.jpg
+feh --bg-tile ~/code/wallpapers/black.png
 picom &
 unclutter &
 exec $(get_session)
