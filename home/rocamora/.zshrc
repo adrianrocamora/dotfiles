@@ -163,3 +163,4 @@ alias stmevilgenius="steam steam://rungameid/3720"
 alias stmduet="steam steam://rungameid/292600"
 
 alias tclock="/home/rocamora/code/other/tty-clock/tty-clock"
+alias i3f="i3lock-fancy"
