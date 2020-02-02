@@ -200,6 +200,7 @@ nnoremap <space>gd :Gdiff<CR>
 "nnoremap <space>gc :Gcommit -v -q<CR>
 
 " RUN PROGRAMS ON FILE
+nmap <leader>p :cd %:h<CR>:!pdflatex %<CR> 
 nmap <leader>r :cd %:h<CR>:!python3 %<CR>
 nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
 nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
