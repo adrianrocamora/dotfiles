@@ -14,6 +14,9 @@ Plug 'mattn/emmet-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'yuratomo/w3m.vim'
 Plug 'sunaku/vim-dasht'
+Plug 'xuhdev/vim-latex-live-preview'	"python required
+Plug 'vim-latex/vim-latex'	"python required
+
 
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
@@ -26,7 +29,6 @@ Plug 'sunaku/vim-dasht'
 "Plug 'lervag/vimtex'
 "if has('win32')
 "else
-""Plug 'xuhdev/vim-latex-live-preview'	"python required
 "endif
 "Plug 'masukomi/vim-markdown-folding'
 "
