@@ -356,10 +356,10 @@ elif mode == 'wide':
 
 elif mode == 'color':
 	img_wp = Image.new('RGB', (2000, 1000), color='black')
-	wp_fullpath = '~/wallpapers/wp.png'
+	wp_fullpath = '/home/rocamora/wallpapers/w.png'
 	img_wp.save(wp_fullpath)
-	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 	os.system('feh --bg-fill ' + wp_fullpath)
+	#os.system('feh --bg-fill ~/code/wallpapers/cute01.png')
 else:
 	pass
 
