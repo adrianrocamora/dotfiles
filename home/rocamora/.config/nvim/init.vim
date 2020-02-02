@@ -305,7 +305,7 @@ import vim
 import random
 from PIL import Image, ImageDraw
 
-path = '~/docs/wallpapers/' + vim.eval("a:dir")
+path = '/home/rocamora/wallpapers/' + vim.eval("a:dir")
 mode = vim.eval("a:mode")
 
 if mode == 'tall':
@@ -335,9 +335,8 @@ if mode == 'tall':
 	img_wp.paste(img_left, (img_left_x0, img_left_y0))
 	img_wp.paste(img_right, (img_right_x0, img_right_y0))
 
-	wp_fullpath = '~/docs/wallpapers/wp.png'
+	wp_fullpath = '/home/rocamora/wallpapers/w.png'
 	img_wp.save(wp_fullpath)
-	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 	os.system('feh --bg-fill ' + wp_fullpath)
 
 elif mode == 'wide':
@@ -351,7 +350,6 @@ elif mode == 'wide':
 
 	wp_fullpath = random_choices[0]
 	print(wp_fullpath)
-	# os.system('gsettings set org.gnome.desktop.background picture-uri ' + wp_fullpath)
 	os.system('feh --bg-fill ' + wp_fullpath)
 
 elif mode == 'color':
