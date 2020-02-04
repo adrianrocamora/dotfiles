@@ -9,6 +9,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# inpstall python-i3-py and xorg-util-macros
+exec --no-startup-id /home/rocamora/code/dotfiles/home/rocamora/util/alternating_layouts.py
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
