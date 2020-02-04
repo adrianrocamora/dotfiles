@@ -246,3 +246,6 @@ mode "$mode_gaps_outer" {
 bindsym $mod+Mod1+z exec transset-df -a --min 0.25 --dec 0.25
 bindsym $mod+Mod1+x exec transset-df -a --inc 0.25
 bindsym $mod+Mod1+c exec --no-startup-id picom -b
+
+bindsym $mod+Mod1+k exec xbacklight -inc 5
+bindsym $mod+Mod1+j exec xbacklight -dec 5
