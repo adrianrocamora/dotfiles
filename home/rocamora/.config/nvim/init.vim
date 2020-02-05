@@ -166,7 +166,7 @@ if has('win32')
 	"map <leader>dd :e ~/<CR>
 else
 	"map <leader>di :e ~/.config/nvim/init.vim<CR>
-	map <leader>di :e ~/code/dot_files/init.vim<CR>
+	map <leader>di :e ~/code/dotfiles/home/rocamora/.config/nvim/init.vim<CR>
 	map <leader>dc :e ~/code<CR>
 	map <leader>db :e ~/books<CR>
 	map <leader>dd :e ~<CR>
@@ -209,7 +209,7 @@ nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter
 
 nmap <leader>f :!firefox %<CR>
 
-nmap <leader>m :!bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
+nmap <leader>m :!bash /home/rocamora/code/dotfiles/home/rocamora/util/play_random_song.sh<CR>
 
 "nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
 
