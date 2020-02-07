@@ -205,7 +205,7 @@ nmap <leader>r :cd %:h<CR>:!python3 %<CR>
 nmap <leader>n :cd %:h<CR>:!node --experimental-modules %<CR>
 nmap <leader>t :cd %:p:h<cr>:!npm test<cr>
 nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
-nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
+" nmap <leader>j :!jupytext --to ipynb % --update --output %:r.ipynb <CR>:!jupyter nbconvert --to notebook --execute --inplace %:r.ipynb <CR><CR>:!jupyter nbconvert --to html %:r.ipynb <CR><CR>:!xdg-open %:r.html<CR><CR>
 
 nmap <leader>f :!firefox %<CR>
 
