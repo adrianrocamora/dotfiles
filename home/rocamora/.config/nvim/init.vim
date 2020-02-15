@@ -466,3 +466,5 @@ noremap <leader>0 :tablast<cr>
 "set clipboard=unnamedplus
 "set clipboard^=unnamedplus
 set clipboard^=unnamed
+
+let g:w3m#lang = 'en_US'
