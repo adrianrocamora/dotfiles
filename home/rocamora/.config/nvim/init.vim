@@ -173,31 +173,31 @@ else
 endif
 
 " Word counter
-nnoremap <space>wc :!wc -w %<CR>
-nnoremap <space>go :Goyo<CR>
+nnoremap <leader>wc :!wc -w %<CR>
+nnoremap <leader>go :Goyo<CR>
 
 " FUGITIVE VIM BINDINGS
-nnoremap <space>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
-nnoremap <space>gps :Git push<CR>
-nnoremap <space>gl :cd %:h<CR>:!git log --oneline --graph<CR>
+nnoremap <leader>gac :Git add %<CR>:Gcommit -v -q -m "Updates"<CR>
+nnoremap <leader>gps :Git push<CR>
+nnoremap <leader>gl :cd %:h<CR>:!git log --oneline --graph<CR>
 
-nnoremap <space>ga :Git add %<CR>
-nnoremap <space>gss :Gstatus<CR>
-nnoremap <space>gcc :Gcommit -v -q<CR>
-nnoremap <space>gcm :Gcommit -v -q -m "Updates"<CR>
-nnoremap <space>gd :Gdiff<CR>
-"nnoremap <space>gaa :Git add %:p<CR>
-"nnoremap <space>ge :Gedit<CR>
-"nnoremap <space>gr :Gread<CR>
-"nnoremap <space>gw :Gwrite<CR><CR>
-"nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-"nnoremap <space>gg :Ggrep<Space>
-"nnoremap <space>gm :Gmove<Space>
-"nnoremap <space>gb :Git branch<Space>
-"nnoremap <space>go :Git checkout<Space>
-"nnoremap <space>gps :Dispatch! git push<CR>
-"nnoremap <space>gpl :Dispatch! git pull<CR>
-"nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <leader>ga :Git add %<CR>
+nnoremap <leader>gss :Gstatus<CR>
+nnoremap <leader>gcc :Gcommit -v -q<CR>
+nnoremap <leader>gcm :Gcommit -v -q -m "Updates"<CR>
+nnoremap <leader>gd :Gdiff<CR>
+"nnoremap <leader>gaa :Git add %:p<CR>
+"nnoremap <leader>ge :Gedit<CR>
+"nnoremap <leader>gr :Gread<CR>
+"nnoremap <leader>gw :Gwrite<CR><CR>
+"nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+"nnoremap <leader>gg :Ggrep<Space>
+"nnoremap <leader>gm :Gmove<Space>
+"nnoremap <leader>gb :Git branch<Space>
+"nnoremap <leader>go :Git checkout<Space>
+"nnoremap <leader>gps :Dispatch! git push<CR>
+"nnoremap <leader>gpl :Dispatch! git pull<CR>
+"nnoremap <leader>gc :Gcommit -v -q<CR>
 
 " RUN PROGRAMS ON FILE
 nmap <leader>p :cd %:h<CR>:!pdflatex %<CR> 
