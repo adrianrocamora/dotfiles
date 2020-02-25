@@ -117,6 +117,8 @@ export GRADLE_USER_HOME=/home/rocamora/.gradle
 
 export PATH=$PATH:~/code/other/dasht/bin
 
+export TMPDIR=/home/rocamora/.tmp
+
 #alias neofetch="neofetch --ascii_distro mac"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
