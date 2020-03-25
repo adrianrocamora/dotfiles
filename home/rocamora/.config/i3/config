@@ -258,3 +258,6 @@ bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
 bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
 
+bindsym $mod+u move workspace to output eDP1
+bindsym $mod+i move workspace to output HDMI1
+bindsym $mod+Mod1+o exec i3lock-fancy
