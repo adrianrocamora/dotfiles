@@ -209,7 +209,7 @@ nmap <leader>s :cd %:p:h<cr>:!npm start<cr>
 
 nmap <leader>f :!firefox %<CR>
 
-nmap <leader>m :!bash /home/rocamora/code/dotfiles/home/rocamora/util/play_random_song.sh<CR>
+nmap <leader>m :!bash /home/isla/code/dotfiles/home/rocamora/util/play_random_song.sh<CR>
 
 "nmap <leader>p :!termdown 15m && !bash /home/rocamora/code/dot_files/play_random_song.sh<CR>
 

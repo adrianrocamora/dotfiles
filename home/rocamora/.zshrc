@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rocamora/.oh-my-zsh"
+export ZSH="/home/isla/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -99,10 +99,10 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$PATH:/home/rocamora/.local/bin"
+export PATH="$PATH:/home/isla/.local/bin"
 export PATH=~/apps:$PATH
-
-export ANDROID_HOME=/home/rocamora/Android/Sdk/
+# export ANDROID_HOME=/home/isla/Android/Sdk/
+export ANDROID_HOME="/opt/android-sdk/"
 export PATH=$PATH:$ANDROID_HOME/emulator 
 export PATH=$PATH:$ANDROID_HOME/tools 
 export PATH=$PATH:$ANDROID_HOME/tools/bin 
@@ -110,10 +110,11 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 setxkbmap -option caps:swapescape
 
-# npm config set prefixe /home/rocamora/.npmglobal
-export PATH=/home/rocamora/.npmglobal/bin:$PATH
+# npm config set prefix /home/rocamora/.npmglobal
+export PATH=/home/isla/.npmglobal/bin:$PATH
+export PATH=/home/isla/code/dotfiles/home/rocamora/util:$PATH
 
-export GRADLE_USER_HOME=/home/rocamora/.gradle
+export GRADLE_USER_HOME=/home/isla/.gradle
 
 export PATH=$PATH:~/code/other/dasht/bin
 

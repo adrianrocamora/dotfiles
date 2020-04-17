@@ -12,7 +12,7 @@
 # inpstall python-i3-py and xorg-util-macros
 exec --no-startup-id /home/rocamora/code/dotfiles/home/rocamora/util/alternating_layouts.py
 
-floating_maximum_size 500 x 500
+floating_maximum_size 800 x 500
 
 set $mod Mod4
 
@@ -100,7 +100,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-# bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -258,3 +258,8 @@ bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
 bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
 
+bindsym $mod+u move workspace to output eDP1
+bindsym $mod+i move workspace to output HDMI1
+bindsym $mod+Mod1+o exec i3lock-fancy
+
+exec xautolock -time 10 -locker 'i3lock-fancy' &
