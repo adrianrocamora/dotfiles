@@ -168,6 +168,7 @@ else
 	"map <leader>di :e ~/.config/nvim/init.vim<CR>
 	map <leader>di :e ~/code/dotfiles/home/rocamora/.config/nvim/init.vim<CR>
 	map <leader>dc :e ~/code<CR>
+	map <leader>dw :e ~/code/writing/<CR>
 	map <leader>db :e ~/books<CR>
 	map <leader>dd :e ~<CR>
 endif
