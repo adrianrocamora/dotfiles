@@ -66,7 +66,8 @@ get_session(){
 #feh --bg-fill ~/code/wallpapers/toga03.jpg
 #feh --bg-tile ~/code/wallpapers/black.png
 #feh --bg-tile ~/code/wallpapers/skdva03.jpg
-feh --bg-tile ~/code/wallpapers/ironman01.jpg
+#feh --bg-tile ~/code/wallpapers/ironman01.jpg
+feh --bg-tile ~/code/wallpapers/dva02.jpg
 picom &
 unclutter &
 exec $(get_session)
