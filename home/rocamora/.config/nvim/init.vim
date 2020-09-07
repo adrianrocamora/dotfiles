@@ -442,6 +442,7 @@ noremap <leader>e :call ShowEquation()<CR>
 if has('win32')
 colorscheme jellyx
 else
+colorscheme py-darcula
 "colorscheme codedark
 "colorscheme wombat256dave
 "colorscheme molokaidark
