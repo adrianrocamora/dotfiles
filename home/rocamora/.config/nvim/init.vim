@@ -14,9 +14,13 @@ Plug 'mattn/emmet-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'yuratomo/w3m.vim'
 Plug 'sunaku/vim-dasht'
-Plug 'xuhdev/vim-latex-live-preview'	"python required
+"Plug 'xuhdev/vim-latex-live-preview'	"python required
 Plug 'vim-latex/vim-latex'	"python required
 
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
 
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
@@ -470,3 +474,8 @@ noremap <leader>0 :tablast<cr>
 set clipboard^=unnamed
 
 let g:w3m#lang = 'en_US'
+
+set background=dark
+set tabstop=4 shiftwidth=4 noexpandtab
+autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set noexpandtab
