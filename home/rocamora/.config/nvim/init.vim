@@ -17,10 +17,12 @@ Plug 'sunaku/vim-dasht'
 "Plug 'xuhdev/vim-latex-live-preview'	"python required
 Plug 'vim-latex/vim-latex'	"python required
 
-Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-Plug 'jparise/vim-graphql'        " GraphQL syntax
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
@@ -479,3 +481,4 @@ set background=dark
 set tabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set noexpandtab
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
