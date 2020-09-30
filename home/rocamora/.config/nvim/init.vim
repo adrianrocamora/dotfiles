@@ -478,7 +478,7 @@ set clipboard^=unnamed
 let g:w3m#lang = 'en_US'
 
 set background=dark
-set tabstop=4 shiftwidth=4 noexpandtab
-autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set noexpandtab
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+"set tabstop=4 shiftwidth=4 noexpandtab
+"autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+"autocmd FileType python set tabstop=4|set shiftwidth=4|set noexpandtab
+"autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
