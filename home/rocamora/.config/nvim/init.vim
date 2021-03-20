@@ -455,6 +455,9 @@ else
 "colorscheme earth
 endif
 
+" Buffer magic
+noremap <leader>b :ls<cr>:b<space>
+
 " Go to tab by number
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -482,5 +485,20 @@ set background=dark
 "autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 "autocmd FileType python set tabstop=4|set shiftwidth=4|set noexpandtab
 "autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-set nonumber
 :nnoremap - :ls<cr>:b<space>
+set nonumber
+
+" 2-way windows and wsl clipboard magic
+set clipboard+=unnamedplus
+let g:clipboard = {
+          \   'name': 'win32yank-wsl',
+          \   'copy': {
+          \      '+': 'win32yank.exe -i --crlf',
+          \      '*': 'win32yank.exe -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': 'win32yank.exe -o --lf',
+          \      '*': 'win32yank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
