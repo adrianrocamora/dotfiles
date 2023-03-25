@@ -1,0 +1,3 @@
+# Enable Readline not waiting for additional input when a key is pressed.
+# Needed for the mappings below.
+set keyseq-timeout 0
